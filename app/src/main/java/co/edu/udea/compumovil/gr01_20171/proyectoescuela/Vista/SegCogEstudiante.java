@@ -73,6 +73,7 @@ public class SegCogEstudiante extends Activity {
     private ArrayList<Materia> materias;
 
     private View lastItemView;
+    private String textAlert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +82,6 @@ public class SegCogEstudiante extends Activity {
         int id = getIntent().getIntExtra("id",0);
         manager = OperacionesBaseDeDatos.obtenerInstancia(getApplicationContext());
         estudiante = manager.obtenerEstudiante(id);
-
         incializarComponente();
 
     }
@@ -235,7 +235,6 @@ public class SegCogEstudiante extends Activity {
         params.weight = 1;
 
         btn_si.setLayoutParams(params);
-        btn_no.setLayoutParams(params);
 
 
 
@@ -259,8 +258,8 @@ public class SegCogEstudiante extends Activity {
                 seguimiento.setEstado(APROVACION);
                 seguimiento.setFecha(fecha);
                 seguimiento.setIdMateria(materia.getId());
-
-                boolean response = motrarAlerta();
+                textAlert="Confirmar SI";
+                boolean response = motrarAlerta(textAlert);
 
                 ll.removeAllViews();
             }
@@ -278,8 +277,8 @@ public class SegCogEstudiante extends Activity {
                 seguimiento.setEstado(RECHAZO);
                 seguimiento.setFecha(fecha);
                 seguimiento.setIdMateria(materia.getId());
-
-                boolean response = motrarAlerta();
+                textAlert="Confirmar NO";
+                boolean response = motrarAlerta(textAlert);
 
                 ll.removeAllViews();
 
@@ -300,11 +299,11 @@ public class SegCogEstudiante extends Activity {
         lv.setAdapter(adapter);
     }
 
-    private boolean motrarAlerta() {
+    private boolean motrarAlerta(String textAlert) {
         new AlertDialog.Builder(SegCogEstudiante.this)
-                .setTitle("Alerta")
-                .setMessage("¿Desea continuar con la operación?")
-                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle(textAlert)
+                .setIcon(R.drawable.checkbox_marked_circle)
+
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
