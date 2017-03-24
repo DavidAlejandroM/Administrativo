@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -36,11 +35,12 @@ public class SeguimientoCognitivo extends Activity {
 
     private OperacionesBaseDeDatos manager;
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+    protected void onCreate(Bundle savedInstanceState) {
+        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seguimiento_cognitivo);
+
+
 
         manager = OperacionesBaseDeDatos.obtenerInstancia(getApplicationContext());
         estadistica = new EstadisticaCognitiva(manager);
@@ -48,6 +48,7 @@ public class SeguimientoCognitivo extends Activity {
         tipoVista = (int) getIntent().getSerializableExtra("tipoVista");
         //El 1 represente el valor de tipo cognitivo
         categorias = manager.obtenerCategorias(1);
+
     }
 
 
