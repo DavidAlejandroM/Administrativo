@@ -78,7 +78,7 @@ public class CustomListAdapterMC extends ArrayAdapter<Estudiante>{
                             }
 
                             itemSelection2.set(position,!check.isChecked());
-                            est.getGestorMetas().setEstado(true);
+                            est.getGestorMetas().setCumplimiento(true);
                             est.getGestorMetas().setAsignacionCumplimiento(true);
                         }
                     }
@@ -99,7 +99,7 @@ public class CustomListAdapterMC extends ArrayAdapter<Estudiante>{
                             }
 
                             itemSelection.set(position,!check.isChecked());
-                            est.getGestorMetas().setEstado(false);
+                            est.getGestorMetas().setCumplimiento(false);
                             est.getGestorMetas().setAsignacionCumplimiento(true);
                         }
                     }

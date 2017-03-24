@@ -2,6 +2,7 @@ package co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo;
 
 import android.content.Context;
 import android.graphics.Region;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -24,7 +25,7 @@ public class ManejaBDMetas {
         finally {operador.getDb().endTransaction();}
     }
 
-    /*public static void agregarRegistro(OperacionesBaseDeDatos operador, Meta meta){
+    public static void agregarRegistro(OperacionesBaseDeDatos operador, Meta meta){
         // Agregar metodo para verificar que un estudiante no tenga la meta registrada
         try{
             operador.getDb().beginTransaction();
@@ -32,9 +33,9 @@ public class ManejaBDMetas {
             operador.getDb().setTransactionSuccessful();
         }catch (Exception e){e.printStackTrace();}
         finally {operador.getDb().endTransaction();}
-    }*/
+    }
 
-    public static void agregarRegistro(OperacionesBaseDeDatos operador, Meta meta){
+    /*public static void agregarRegistro(OperacionesBaseDeDatos operador, Meta meta){
         try{
             operador.getDb().beginTransaction();
             ArrayList<Meta> metasEstudiante = operador.validarMetaAEstudiante(meta.getListaMetasId(),meta.getEstudianteId());
@@ -56,7 +57,7 @@ public class ManejaBDMetas {
 
         }catch (Exception e){e.printStackTrace();}
         finally {operador.getDb().endTransaction();}
-    }
+    }*/
 
     public static void agregarRegistro(OperacionesBaseDeDatos operador, CumplimientoMeta cumplimiento){
         try{
@@ -88,9 +89,13 @@ public class ManejaBDMetas {
         switch (clave){
             case 0: return (operador.listarMetas());
             case 1: return (operador.listarMetasEstudiante());
-            case 2:return (operador.obtenerMetasPorIdListaMtas(id));
+            case 2: return (operador.obtenerMetasPorIdListaMtas(id));
         }
         return (null);
+    }
+
+    public static ArrayList retornarMetasPorEstudiante(OperacionesBaseDeDatos operador, int idListaMetas, int idEstudiante){
+        return (operador.obtenerMetasEstudiante(idListaMetas, idEstudiante));
     }
 
     public static Estudiante obtenerEstudiante(OperacionesBaseDeDatos operador, int id){

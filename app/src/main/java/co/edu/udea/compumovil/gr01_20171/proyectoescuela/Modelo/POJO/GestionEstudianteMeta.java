@@ -4,7 +4,7 @@ public class GestionEstudianteMeta {
     private boolean estado; // Correspone a si el estudiante esta seleccionado en la vista
     private int duracionMeta;
     private boolean cumplimiento; // Corresponde a si el estudiante cumplio o no alguna meta
-    private boolean asignacionCumplimiento;
+    private boolean asignacionCumplimiento; // Corresponde si al estudiante se le asigno un cumplimiento, sea true o false
 
     public boolean estado() {
         return estado;
