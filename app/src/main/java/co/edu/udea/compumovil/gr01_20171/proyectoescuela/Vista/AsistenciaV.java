@@ -63,13 +63,23 @@ public class AsistenciaV extends AppCompatActivity {
                     switch (contadores[i]){
                         case 1:
                         {
+                            if(retornaAsistenciaDia
+                                    (String.valueOf(estudiantes.get(i).getIdentificacion()),giveDate()).getAsistencia()
+                                    ==null)
+                            {
                             agregarAsistencia(1,i);
                             break;
+                            }
                         }
                         case 2:
                         {
-                            agregarAsistencia(2,i);
-                            break;
+                            if(retornaAsistenciaDia
+                                    (String.valueOf(estudiantes.get(i).getIdentificacion()),giveDate()).getAsistencia()
+                                    ==null)
+                            {
+                                agregarAsistencia(2,i);
+                                break;
+                            }
                         }
                         case 3:
                         {
@@ -298,4 +308,6 @@ public class AsistenciaV extends AppCompatActivity {
 
         return estudiantesFull;
     }
+
+
 }
