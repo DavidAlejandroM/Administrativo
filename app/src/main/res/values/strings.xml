@@ -23,7 +23,7 @@
 
     <!-- String pantalla principal-->
     <string name="seguimiento_cognitivo">Seguimiento Cognitivo</string>
-    <string name="seguimiento_etico">Seguimiento Etico</string>
+    <string name="seguimiento_etico">Seguimiento Ético Y Comportamental</string>
     <string name="metas">Metas</string>
     <string name="asistencia">Asistencia</string>
     <string name="title_activity_estadistica_model">activity_estadistica_model</string>
@@ -37,5 +37,12 @@
 
     <!-- String Metas-->
     <string name="seleccionGrupo">GRUPOS</string>
+
+    <!--Strings Etico-->
+    <string name="title_activity_seguimiento_etico"></string>
+    <string name="title_activity_seg_etico_estudiante">SegEticoEstudiante</string>
+    <string name="agregar_categoria">+ Categoría</string>
+    <string name="agregar_subcategoria">+ Subcategoría</string>
+    <string name="title_activity_categoria_adapter">CategoriaAdapter</string>
 </resources>
 

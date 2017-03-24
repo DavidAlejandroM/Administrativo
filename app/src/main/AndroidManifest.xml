@@ -71,6 +71,21 @@
         <activity android:name=".Vista.InfoAsistenciaGrupo"></activity>
         <activity android:name=".Vista.Ubicacion"></activity>
 
+        <activity
+            android:name=".Vista.SeguimientoEtico"
+            android:label="@string/title_activity_seguimiento_etico"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Vista.SegEticoEstudiante"
+            android:label="@string/title_activity_seg_etico_estudiante"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Vista.AgregarCategoriaEtico" />
+        <activity android:name=".Vista.AgregarSubcategoriaEtico" />
+        <activity android:name=".Vista.EstadisticasEticoEstudiante" />
+        <activity android:name=".Vista.EstadisticaEtico" />
+        <activity android:name=".Vista.EstadisticaEticoEstudiante" />
+        <activity android:name=".Vista.EstadisticaEticoEstudianteFecha"></activity>
+
 
     </application>
 

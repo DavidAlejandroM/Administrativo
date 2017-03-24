@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.AgregarCategoriaEtico">
+
+    <EditText
+        android:id="@+id/agregar_nombre_categoria_etico"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textCapWords|textPersonName"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/agregarEtico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agregar"
+        android:layout_gravity="center"
+        android:onClick="clickCategoriaEtico"/>
+
+    <Button
+        android:id="@+id/returnEtico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="clickDevolverse"
+        android:text="Regresar"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

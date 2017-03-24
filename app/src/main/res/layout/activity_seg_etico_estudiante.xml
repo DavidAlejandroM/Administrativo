@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.SegEticoEstudiante">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/foto_estudiante_etico"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@mipmap/ic_launcher" />
+
+            <LinearLayout
+                android:id="@+id/lv_datos_est_etico"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/nombre_estudiante_etico"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Nombre"
+                    android:textColor="@color/colorNegro"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/apellido_estudiante_etico"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Apellido"
+                    android:textColor="@color/colorNegro"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/identificacion_estudiante_etico"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Identificacion"
+                    android:textColor="@color/colorNegro"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btn_agregar_categoria_etico"
+                    android:layout_width="150dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="right"
+                    android:gravity="center"
+                    android:onClick="clickIrAgregarCategoria"
+                    android:text="@string/agregar_categoria" />
+
+                <Button
+                    android:id="@+id/btn_agregar_subcategoria_etico"
+                    android:layout_width="150dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="right"
+                    android:gravity="center"
+                    android:onClick="clickIrAgregarSubcategoria"
+                    android:text="@string/agregar_subcategoria" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Spinner
+                    android:id="@+id/spinner_etico_estudiante"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linearLayout_categorias"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal"
+            android:textColor="@color/colorBlanco"
+            android:textSize="@dimen/titulo_1_size"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textAlignment="center">
+
+            <GridView
+                android:gravity="center"
+                android:id="@+id/grid_view_categorias"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/colorBlanco"
+                android:textStyle="bold"
+                android:textAlignment="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout_subcategorias"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ListView
+                android:id="@+id/list_view_subcategorias"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/fab_margin"
+                android:paddingBottom="@dimen/fab_margin"
+                android:paddingEnd="@dimen/fab_margin"
+                android:paddingLeft="@dimen/fab_margin"
+                android:paddingRight="@dimen/fab_margin"
+                android:paddingStart="@dimen/fab_margin"
+                android:paddingTop="@dimen/fab_margin" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

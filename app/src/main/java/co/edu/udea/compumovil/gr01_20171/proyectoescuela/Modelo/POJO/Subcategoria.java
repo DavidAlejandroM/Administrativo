@@ -4,11 +4,13 @@ package co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO;/*
  * and open the template in the editor.
  */
 
+import java.io.Serializable;
+
 /**
  *
  * @author andres.pinov
  */
-public class Subcategoria {
+public class Subcategoria implements Serializable {
     private int id;
     private int idCat;
     private String nombre;
