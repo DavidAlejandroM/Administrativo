@@ -110,7 +110,7 @@ public class PantallaPpal extends AppCompatActivity {
         intent.putStringArrayListExtra("valX", estadistica.listarEstudiantes(estudiantes));
         intent.putExtra("valSi",estadistica.obtenerValSiGeneral(estudiantes));
         intent.putExtra("valNo", estadistica.obtenerValNoGeneral(estudiantes));
-        intent.putExtra("abrirBarra", true);
+        intent.putExtra("abrirBarra", false);
         intent.putExtra("tipoEstadistica", 1);
         startActivity(intent);
     }
