@@ -1,5 +1,6 @@
 package co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -43,8 +44,10 @@ public class EstadisticaModel extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle(R.string.agregar_categoria);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_estadistica_model);
+
         valX = (ArrayList<String>) getIntent().getSerializableExtra("valX");
         valSi = (List) getIntent().getSerializableExtra("valSi");
         valNo = (List) getIntent().getSerializableExtra("valNo");
@@ -55,7 +58,7 @@ public class EstadisticaModel extends AppCompatActivity {
         groupSpace = 0.4f;
         chart = (BarChart) findViewById(R.id.barChart);
         chart.setDescription(null);
-        chart.setPinchZoom(false);
+        chart.setPinchZoom(true);
         chart.setScaleEnabled(false);
         chart.setDrawBarShadow(false);
         chart.setDrawGridBackground(false);
@@ -73,9 +76,9 @@ public class EstadisticaModel extends AppCompatActivity {
 
         BarDataSet set1, set2;
         set1 = new BarDataSet(yVals1, "SI");
-        set1.setColor(Color.GREEN);
+        set1.setColor(Color.rgb(175,203,122));
         set2 = new BarDataSet(yVals2, "NO");
-        set2.setColor(Color.RED);
+        set2.setColor(Color.rgb(253,116,116));
         BarData data = new BarData(set1, set2);
         data.setValueFormatter(new LargeValueFormatter());
         chart.setData(data);
@@ -86,27 +89,17 @@ public class EstadisticaModel extends AppCompatActivity {
         chart.getData().setHighlightEnabled(getIntent().getBooleanExtra("abrirBarra",false));
         chart.invalidate();
 
-
-        Legend l = chart.getLegend();
-        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
-        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
-        l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
-        l.setDrawInside(true);
-        l.setYOffset(20f);
-        l.setXOffset(0f);
-        l.setYEntrySpace(0f);
-        l.setTextSize(8f);
-
+        crearLegenda();
         //X-axis
         XAxis xAxis = chart.getXAxis();
         xAxis.setGranularity(1f);
         xAxis.setGranularityEnabled(true);
         xAxis.setCenterAxisLabels(true);
-        xAxis.setDrawGridLines(true);
+        xAxis.setDrawGridLines(false);
         xAxis.setAxisMaximum(valX.size());
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setValueFormatter(new IndexAxisValueFormatter(valX));
-//Y-axis
+        //Y-axis
         chart.getAxisRight().setEnabled(false);
         YAxis leftAxis = chart.getAxisLeft();
         leftAxis.setValueFormatter(new LargeValueFormatter());
@@ -115,14 +108,14 @@ public class EstadisticaModel extends AppCompatActivity {
         leftAxis.setAxisMinimum(0f);
         chart.setTouchEnabled(true);
         chart.setDragEnabled(true);
-        chart.setBackgroundColor(Color.rgb(252,236,233));
-/*        chart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                v.setBackgroundColor(Color.DKGRAY);
-            }
-        });*/
-       chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+
+
+        YAxis left = chart.getAxisLeft();
+        left.setDrawLabels(false); // no axis labels
+        left.setDrawAxisLine(false); // no axis line
+        left.setDrawGridLines(false); // no grid lines
+        left.setDrawZeroLine(true);
+        chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
 
             @Override
             public void onValueSelected(Entry e, Highlight h) {
@@ -141,6 +134,7 @@ public class EstadisticaModel extends AppCompatActivity {
     public void crearVistaBarra(Entry e){
         OperacionesBaseDeDatos manager = OperacionesBaseDeDatos.obtenerInstancia(getApplicationContext());
         if (tipoEstadistica== 1){
+
             EstadisticaCognitiva estadistica = new EstadisticaCognitiva(manager);
             estadistica.setIdEstudiante(getIntent().getIntExtra("idEstudiante",0));
             String nombreBarra = (String) e.getData();
@@ -160,19 +154,23 @@ public class EstadisticaModel extends AppCompatActivity {
         }
 
 
-
-
-        /*Intent intent = new Intent(this,PantallaPpal.class);
-        startActivity(intent);*/
     }
 
-        public void setValX(){
+    public void crearLegenda(){
+
+        Legend l = chart.getLegend();
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+        l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+        l.setDrawInside(true);
+        l.setYOffset(20f);
+        l.setXOffset(0f);
+        l.setYEntrySpace(0f);
+        l.setTextSize(8f);
 
 
-        }
-
-        public void setValY(){
+    }
 
 
-        }
+
 }
