@@ -23,10 +23,18 @@ public class AgregarCategoriaEtico extends Activity {
         manager = OperacionesBaseDeDatos.obtenerInstancia(getApplicationContext());
     }
 
+    /**
+     * Devolverse de vista
+     * @param view Objeto vista para devolver
+     */
     public void clickDevolverse(View view) {
         onBackPressed();
     }
 
+    /**
+     * 
+     * @param view
+     */
     public void clickCategoriaEtico(View view){
         nombre = (EditText) findViewById(R.id.agregar_nombre_categoria_etico);
         String nom = nombre.getText().toString();

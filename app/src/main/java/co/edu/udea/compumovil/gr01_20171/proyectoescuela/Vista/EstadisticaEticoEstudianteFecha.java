@@ -63,8 +63,8 @@ public class EstadisticaEticoEstudianteFecha extends Activity {
             imagen.setImageResource(R.mipmap.ic_launcher);
         }
         nombreEst.setText(estudiante.getNombres()+" "+estudiante.getApellidos());
-        nombreSub.setText("Subcategoria: "+subcategoria.getNombre());
-        nombreCat.setText("Categoria: "+c.getNombre());
+        nombreSub.setText("Subcategoría: "+subcategoria.getNombre());
+        nombreCat.setText("Categoría: "+c.getNombre());
         cantidad.setText("Cantidad: "+Integer.toString(seguimientoSubcategoria.size()));
         String[] fechas = obtenerFechas(seguimientoSubcategoria);
 
