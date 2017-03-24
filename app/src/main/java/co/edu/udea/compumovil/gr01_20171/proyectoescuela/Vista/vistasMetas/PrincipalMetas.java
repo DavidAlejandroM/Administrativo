@@ -245,7 +245,9 @@ public class PrincipalMetas extends AppCompatActivity {
                 break;
             case (R.id.opcionBorrar):borrarMeta();
                 break;
-            case (R.id.opcionAsignarMG): cambiarEstadoComponentesMG(true);
+            case (R.id.opcionAsignarMG):
+                cambiarEstadoComponentesMG(true);
+                duracionEq.setEnabled(false);
                 break;
             case (R.id.opcionCumplimiento): activarCumplimiento();
                 break;

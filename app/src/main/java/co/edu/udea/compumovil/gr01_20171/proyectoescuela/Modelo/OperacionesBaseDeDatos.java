@@ -236,13 +236,22 @@ public final class OperacionesBaseDeDatos {
     /**
      * Método para asignar un cumplimiento a una meta
      */
-    public void asignarCumplimiento(CumplimientoMeta cumplimiento){
+    public boolean asignarCumplimiento(CumplimientoMeta cumplimiento){
         SQLiteDatabase db = baseDatos.getWritableDatabase();
         ContentValues valores = new ContentValues();
         valores.put(ContratoEscuela.CumplimientoMetas.MET_ID, cumplimiento.getMetaId());
         valores.put(ContratoEscuela.CumplimientoMetas.MET_FECHA, String.valueOf(cumplimiento.getFecha()));
         valores.put(ContratoEscuela.CumplimientoMetas.MET_ESTADO, cumplimiento.getEstado());
-        db.insertOrThrow(ManejaSQL.Tablas.TBL_CUMPLIMIENTO_METAS,null,valores);
+        long response = db.insertOrThrow(ManejaSQL.Tablas.TBL_CUMPLIMIENTO_METAS,null,valores);
+
+        if(response != -1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     /**
@@ -589,8 +598,8 @@ public final class OperacionesBaseDeDatos {
         return listarMetas;
     }
 
-    //se recuperan las metas que tengan un id de lista metas
-    public ArrayList<Meta> validarMetaAEstudiante(int idListaMetas, int idEstudiante){
+    //se recuperan las metas correspondientes a un estudiante y que tengan un id(idListaMetas) de lista metas
+    public ArrayList<Meta> obtenerMetasEstudiante(int idListaMetas, int idEstudiante){
         String consulta = String.format("SELECT * FROM tbl_meta WHERE ("+
                         ContratoEscuela.ColumnasMetas.LISTMETA_ID+" = %s AND "+ContratoEscuela.ColumnasMetas.EST_ID+" = %s)",
                 idListaMetas,idEstudiante);

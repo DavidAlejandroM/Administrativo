@@ -3,6 +3,7 @@ package co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.vistasMetas;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
@@ -31,6 +32,7 @@ public class Cumplimiento extends AppCompatActivity {
     private int idMeta;
     private ListaMetas meta;
     private ArrayList<Estudiante> estudiantes;
+    private ArrayList<Meta> metasPorEstudiante;
     private TextView campo;
     private ListView lista;
     private CustomListAdapterMC customListAdapter;
@@ -100,12 +102,21 @@ public class Cumplimiento extends AppCompatActivity {
         for(int i=0;i<estudiantes.size(); i++){
             estudiante = estudiantes.get(i);
             if(estudiante.getGestorMetas().asignacionCumplimiento()){
-                boolean estadoCumplimiento = estudiante.getGestorMetas().estado();
-                if(estadoCumplimiento) cumplimiento = new CumplimientoMeta(idMeta, Calendar.getInstance().getTime(),1);
+                boolean estadoCumplimiento = estudiante.getGestorMetas().cumplimiento();
+                metasPorEstudiante = ManejaBDMetas.retornarMetasPorEstudiante(OperacionesBaseDeDatos.obtenerInstancia(getApplicationContext()),
+                        idMeta, estudiante.getIdentificacion());
+                for(int j=0; j<metasPorEstudiante.size(); j++){
+                    Meta m = metasPorEstudiante.get(j);
+                    if(estadoCumplimiento) cumplimiento = new CumplimientoMeta(m.getId(), Calendar.getInstance().getTime(),1);
+                    else cumplimiento = new CumplimientoMeta(m.getId(), Calendar.getInstance().getTime(),0);
+                    ManejaBDMetas.agregarRegistro(OperacionesBaseDeDatos.obtenerInstancia(getApplicationContext()), cumplimiento);
+                }
+                /*if(estadoCumplimiento) cumplimiento = new CumplimientoMeta(idMeta, Calendar.getInstance().getTime(),1);
                 else cumplimiento = new CumplimientoMeta(idMeta, Calendar.getInstance().getTime(),0);
-                ManejaBDMetas.agregarRegistro(OperacionesBaseDeDatos.obtenerInstancia(getApplicationContext()), cumplimiento);
+                ManejaBDMetas.agregarRegistro(OperacionesBaseDeDatos.obtenerInstancia(getApplicationContext()), cumplimiento);*/
             }
         }mensaje("Se asignaron correctamente los cumplimientos");
+        onRestart();
     }
 
     private void setMeta(){
