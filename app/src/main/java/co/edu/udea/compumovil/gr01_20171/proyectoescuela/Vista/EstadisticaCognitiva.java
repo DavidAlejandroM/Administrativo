@@ -1,9 +1,12 @@
 package co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista;
 
+import android.app.AlertDialog;
+
 import java.util.ArrayList;
 
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.OperacionesBaseDeDatos;
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO.Categoria;
+import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO.Estudiante;
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO.Materia;
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO.Subcategoria;
 
@@ -16,10 +19,13 @@ public class EstadisticaCognitiva {
     OperacionesBaseDeDatos manager;
     private int idEstudiante;
     private Materia materia;
+    private ArrayList<Categoria> categorias;
 
 
     public EstadisticaCognitiva(OperacionesBaseDeDatos manager) {
         this.manager= manager;
+        categorias = manager.obtenerCategorias(1);
+
 
     }
 
@@ -35,6 +41,20 @@ public class EstadisticaCognitiva {
 
         }
         return nombreCategorias;
+    }
+
+    /**
+     * Lista el nombre de todas las categorias
+     * @param estudiantes Lista de todas los objetos categorias
+     * @return Lista de tipo String almacenando el nombre de todas las categorias
+     */
+    public ArrayList<String> listarEstudiantes(ArrayList<Estudiante> estudiantes){
+        ArrayList<String> nombreEstudiante = new ArrayList<>();
+        for (int i=0;i< estudiantes.size();i++){
+            nombreEstudiante.add(estudiantes.get(i).getNombres());
+
+        }
+        return nombreEstudiante;
     }
 
 
@@ -81,11 +101,11 @@ public class EstadisticaCognitiva {
 /*
     */
 /**
-     *Metodo encargado de obtener la cantidad de SI que se encuentra en esa subcategoria
-     * @param sub Subcategoria para obtener los valores de si que contiene
-     *
-     * @return  Cantidad de SI que hay en esa categoria
-     *//*
+ *Metodo encargado de obtener la cantidad de SI que se encuentra en esa subcategoria
+ * @param sub Subcategoria para obtener los valores de si que contiene
+ *
+ * @return  Cantidad de SI que hay en esa categoria
+ *//*
 
 
     public int obtenerValSiSubcategoria (Subcategoria sub){
@@ -96,10 +116,10 @@ public class EstadisticaCognitiva {
 
     */
 /**
-     * Metodo encargado de obtener la cantidad de NO que se encuentra en esa subcategoria
-     * @param sub ubcategoria para obtener los valores de NO que contiene
-     * @return antidad de NO que hay en esa categoria
-     *//*
+ * Metodo encargado de obtener la cantidad de NO que se encuentra en esa subcategoria
+ * @param sub ubcategoria para obtener los valores de NO que contiene
+ * @return antidad de NO que hay en esa categoria
+ *//*
 
     public int obtenerValNoSubcategoria(Subcategoria sub){
         return (int)manager.countSeguimientoFromIdSubcategoriIdEstudiante(sub.getId(),idEstudiante,"no");
@@ -113,7 +133,7 @@ public class EstadisticaCognitiva {
      * @return  Cantidad de SI que hay en esa categoria
      */
 
-    public int obtenerValSiSubcategoria(Subcategoria sub){
+    public int obtenerValSiSubcategoria(Subcategoria sub, int idEstudiante){
         return (int)manager.countSeguimientoFromIdSubcategoriIdEstudianteIdMateria(sub.getId(),idEstudiante,materia.getId(),"si");
     }
 
@@ -122,7 +142,7 @@ public class EstadisticaCognitiva {
      * @param sub ubcategoria para obtener los valores de NO que contiene
      * @return antidad de NO que hay en esa categoria
      */
-    public int obtenerValNoSubcategoria (Subcategoria sub){
+    public int obtenerValNoSubcategoria (Subcategoria sub, int idEstudiante){
         return (int)manager.countSeguimientoFromIdSubcategoriIdEstudianteIdMateria(sub.getId(),idEstudiante,materia.getId(),"no" );
     }
 
@@ -132,12 +152,15 @@ public class EstadisticaCognitiva {
      * @param subcategorias Lista de todas las subcategorias de la categoria correspondiente
      * @return Cantidad de veces que gano SI en todas las subcategorias
      */
-    public int obtenerValSiSubcategorias(ArrayList<Subcategoria> subcategorias){
+    public int obtenerValSiSubcategorias(ArrayList<Subcategoria> subcategorias, int idEstudiante){
         int gano=0;
         for (int i=0;i<subcategorias.size();i++){
-            int valSi = obtenerValSiSubcategoria(subcategorias.get(i));
-            int valNo = obtenerValNoSubcategoria(subcategorias.get(i));
+            int valSi = obtenerValSiSubcategoria(subcategorias.get(i),idEstudiante);
+            int valNo = obtenerValNoSubcategoria(subcategorias.get(i),idEstudiante);
 
+            if (valSi ==0 && valNo==0){
+                return 0;
+            }
             if (valSi>= valNo){
                 gano++;
             }
@@ -151,12 +174,15 @@ public class EstadisticaCognitiva {
      * @param subcategorias Lista de todas las subcategorias de la categoria correspondiente
      * @return Cantidad de veces que no cumplio NO en todas las subcategorias
      */
-    public int obtenerValNoSubcategorias(ArrayList<Subcategoria> subcategorias){
+    public int obtenerValNoSubcategorias(ArrayList<Subcategoria> subcategorias, int idEstudiante){
         int perdio=0;
         for (int i=0;i<subcategorias.size();i++){
-            int valSi = obtenerValSiSubcategoria(subcategorias.get(i));
-            int valNo = obtenerValNoSubcategoria(subcategorias.get(i));
+            int valSi = obtenerValSiSubcategoria(subcategorias.get(i),idEstudiante);
+            int valNo = obtenerValNoSubcategoria(subcategorias.get(i),idEstudiante);
 
+            if (valSi ==0 && valNo==0){
+                return 0;
+            }
             if (valNo> valSi){
                 perdio++;
             }
@@ -169,13 +195,14 @@ public class EstadisticaCognitiva {
      * @param categorias Categorias de la taxonomia de Bloom
      * @return Un lista de todos los valores SI por cada categoria
      */
-    public ArrayList<Integer> obtenerValSiCategorias(ArrayList<Categoria> categorias){
+    public ArrayList<Integer> obtenerValSiCategorias(ArrayList<Categoria> categorias, int idEstudiante){
 
+        this.idEstudiante = idEstudiante;
         ArrayList<Integer> valSi = new ArrayList<>();
         ArrayList<Subcategoria> subcategorias;
         for (int i=0;i<categorias.size();i++){
             subcategorias = manager.obtenerSubCategoriasFromCategoriaId(categorias.get(i).getId());
-            valSi.add(obtenerValSiSubcategorias(subcategorias));
+            valSi.add(obtenerValSiSubcategorias(subcategorias, idEstudiante));
         }
         return valSi;
     }
@@ -185,15 +212,86 @@ public class EstadisticaCognitiva {
      * @param categorias Categorias de la taxonomia de Bloom
      * @return Un lista de todos los valores NO por cada categoria
      */
-    public ArrayList<Integer> obtenerValNoCategorias(ArrayList<Categoria> categorias){
+    public ArrayList<Integer> obtenerValNoCategorias(ArrayList<Categoria> categorias, int idEstudiante){
 
+        this.idEstudiante = idEstudiante;
         ArrayList<Integer> valNo = new ArrayList<>();
         ArrayList<Subcategoria> subcategorias;
         for (int i=0;i<categorias.size();i++){
             subcategorias = manager.obtenerSubCategoriasFromCategoriaId(categorias.get(i).getId());
-            valNo.add(obtenerValNoSubcategorias(subcategorias));
+            valNo.add(obtenerValNoSubcategorias(subcategorias, idEstudiante));
         }
         return valNo;
+    }
+
+    int obtenerSiCategorias(ArrayList<Categoria> categorias, int idEstudiante){
+
+        this.idEstudiante = idEstudiante;
+        int gano =0;
+        int valSi,valNo;
+        ArrayList<Subcategoria> subcategorias;
+
+        for (int i=0; i<categorias.size();i++){
+            subcategorias = manager.obtenerSubCategoriasFromCategoriaId(categorias.get(i).getId());
+            valSi = obtenerValSiSubcategorias(subcategorias,idEstudiante);
+            valNo = obtenerValNoSubcategorias(subcategorias, idEstudiante);
+            if (valSi ==0 && valNo==0){
+                return 0;
+            }
+            if (valSi>= valNo){
+                gano++;
+            }
+
+        }
+        return gano;
+    }
+
+    int obtenerNoCategorias(ArrayList<Categoria> categorias, int idEstudiante){
+
+        this.idEstudiante = idEstudiante;
+        int perdio =0;
+        int valSi,valNo;
+        ArrayList<Subcategoria> subcategorias;
+
+        for (int i=0; i<categorias.size();i++){
+            subcategorias = manager.obtenerSubCategoriasFromCategoriaId(categorias.get(i).getId());
+            valSi = obtenerValSiSubcategorias(subcategorias, idEstudiante);
+            valNo = obtenerValNoSubcategorias(subcategorias, idEstudiante);
+            if (valSi ==0 && valNo==0){
+                return 0;
+            }
+            if (valNo>valSi ){
+                perdio++;
+            }
+
+        }
+        return perdio;
+    }
+
+    public ArrayList<Integer> obtenerValSiGeneral(ArrayList<Estudiante> estudiantes){
+
+        ArrayList<Integer> valSi= new ArrayList<>();
+
+        this.categorias = manager.obtenerCategorias(1);
+        for (int i=0;i<estudiantes.size();i++){
+            int idEstudiante = estudiantes.get(i).getIdentificacion();
+            valSi.add(obtenerSiCategorias(categorias,idEstudiante ));
+        }
+
+        return valSi;
+    }
+
+    public ArrayList<Integer> obtenerValNoGeneral(ArrayList<Estudiante> estudiantes){
+        ArrayList<Integer> valNo= new ArrayList<>();
+
+        categorias = manager.obtenerCategorias(1);
+        for (int i=0;i<estudiantes.size();i++){
+            int idEstudiante = estudiantes.get(i).getIdentificacion();
+            valNo.add(obtenerNoCategorias(categorias,idEstudiante ));
+        }
+
+        return valNo;
+
     }
 
 

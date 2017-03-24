@@ -95,13 +95,6 @@ public class SeguimientoCognitivo extends Activity {
         final CharSequence[] items = new CharSequence[materias.size()];
 
 
-//                if(id != 0)
-//                {
-//                    Intent intent = new Intent(SeguimientoCognitivo.this, SegCogEstudiante.class);
-//                    intent.putExtra("id",estudiantes.get(position).getIdentificacion());
-//                    startActivity(intent);
-//                }
-
 
 
             for (int i=0; i<items.length;i++){
@@ -114,14 +107,11 @@ public class SeguimientoCognitivo extends Activity {
         builder.setTitle("Seleccione una opción").setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-           /*     intent.putStringArrayListExtra("valX",listarCategorias(categorias));
-                intent.putStringArrayListExtra("valX",listarSubCategorias(categorias.get(1)));
-                intent.putExtra("valSi", asignarValoresSi(subcategorias));
-                intent.putExtra("valNo", asignarValoresNo(subcategorias));*/
+
                 estadistica.setMateria(materias.get(which));
                 intent.putStringArrayListExtra("valX", estadistica.listarCategorias(categorias));
-                intent.putExtra("valSi",estadistica.obtenerValSiCategorias(categorias));
-                intent.putExtra("valNo", estadistica.obtenerValNoCategorias(categorias));
+                intent.putExtra("valSi",estadistica.obtenerValSiCategorias(categorias, idEstudiante));
+                intent.putExtra("valNo", estadistica.obtenerValNoCategorias(categorias, idEstudiante));
                 intent.putExtra("idEstudiante", idEstudiante);
                 intent.putExtra("abrirBarra", true);
                 intent.putExtra("tipoEstadistica", 1);
