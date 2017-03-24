@@ -82,8 +82,18 @@ public class PantallaPpal extends AppCompatActivity {
 
     public void ClckIrSeguimientoEtico(View view)
     {
-        //se crea la intencion
-        //DE LA VISTA SE ASIGNA EL ONCLICK
+        if (tipoVista == 1)
+        {
+            intent = new Intent(PantallaPpal.this, SeguimientoEtico.class);
+            intent.putExtra("GRUPO",grupo);
+
+        }
+        else if (tipoVista == 2)
+        {
+            intent = new Intent(this,EstadisticaEtico.class);
+            intent.putExtra("GRUPO",grupo);
+        }
+        startActivity(intent);
     }
 
 

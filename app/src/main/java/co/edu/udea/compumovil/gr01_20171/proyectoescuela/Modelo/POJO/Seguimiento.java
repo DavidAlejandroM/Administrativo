@@ -1,8 +1,9 @@
 package co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Seguimiento {
+public class Seguimiento implements Serializable{
     private int idSeg;
     private int idSubSeg;
     private int idEst;

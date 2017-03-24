@@ -37,5 +37,12 @@
 
     <!-- String Metas-->
     <string name="seleccionGrupo">GRUPOS</string>
+
+    <!--Strings Etico-->
+    <string name="title_activity_seguimiento_etico"></string>
+    <string name="title_activity_seg_etico_estudiante">SegEticoEstudiante</string>
+    <string name="agregar_categoria">+ Categoria</string>
+    <string name="agregar_subcategoria">+ Subcategoria</string>
+    <string name="title_activity_categoria_adapter">CategoriaAdapter</string>
 </resources>
 

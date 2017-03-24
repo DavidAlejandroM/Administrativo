@@ -769,7 +769,7 @@ public final class OperacionesBaseDeDatos {
         String query = String.format("SELECT  * FROM tbl_seguimiento  " +
                 "INNER JOIN tbl_subcategorias ON tbl_seguimiento.seg_subc_id = " +
                 "tbl_subcategorias.subc_id WHERE tbl_subcategorias.subc_cat_id = %s AND " +
-                "tbl_seguimiento.",idCategoria);
+                "tbl_seguimiento.seg_est_id = %s",idCategoria,idEstudiante);
 
         Cursor cursor = obtenerDataDB(query);
         cursor.moveToFirst();
