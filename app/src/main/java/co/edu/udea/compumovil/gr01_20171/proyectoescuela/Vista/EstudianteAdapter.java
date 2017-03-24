@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO.Estudiante;
@@ -64,25 +65,32 @@ public class EstudianteAdapter extends BaseAdapter
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.item_estudiante,parent,false);
         }
-
+        LinearLayout ll = (LinearLayout) convertView.findViewById(R.id.contenedor_item_estudiante_layout);
         TextView tvNombre = (TextView) convertView.findViewById(R.id.tv_item_estudiante_nombre);
         TextView tvApellido = (TextView) convertView.findViewById(R.id.tv_item_estudiante_apellido);
         ImageView ivFoto = (ImageView) convertView.findViewById(R.id.iv_item_estudiante_foto);
 
         Estudiante estudiante = estudiantes.get(position);
-        Uri uri = pathToUri(estudiante.getFoto());
-
-        if (!uri.equals(Uri.EMPTY))
+        if(estudiante.getIdentificacion() == 0)
         {
-            ivFoto.setImageURI(pathToUri(estudiante.getFoto()));
+         ll.removeAllViews();
         }
         else
         {
-            ivFoto.setImageResource(R.mipmap.ic_launcher);
-        }
+            Uri uri = pathToUri(estudiante.getFoto());
 
-        tvNombre.setText(estudiante.getNombres());
-        tvApellido.setText(estudiante.getApellidos());
+            if (!uri.equals(Uri.EMPTY))
+            {
+                ivFoto.setImageURI(pathToUri(estudiante.getFoto()));
+            }
+            else
+            {
+                ivFoto.setImageResource(R.mipmap.ic_launcher);
+            }
+
+            tvNombre.setText(estudiante.getNombres());
+            tvApellido.setText(estudiante.getApellidos());
+        }
 
         return convertView;
     }
