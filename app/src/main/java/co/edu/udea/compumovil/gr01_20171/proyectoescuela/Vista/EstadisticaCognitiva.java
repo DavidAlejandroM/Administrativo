@@ -159,7 +159,7 @@ public class EstadisticaCognitiva {
             int valNo = obtenerValNoSubcategoria(subcategorias.get(i),idEstudiante);
 
             if (valSi ==0 && valNo==0){
-                return 0;
+                gano=0;
             }
             if (valSi>= valNo){
                 gano++;
@@ -181,7 +181,7 @@ public class EstadisticaCognitiva {
             int valNo = obtenerValNoSubcategoria(subcategorias.get(i),idEstudiante);
 
             if (valSi ==0 && valNo==0){
-                return 0;
+                perdio= 0;
             }
             if (valNo> valSi){
                 perdio++;
