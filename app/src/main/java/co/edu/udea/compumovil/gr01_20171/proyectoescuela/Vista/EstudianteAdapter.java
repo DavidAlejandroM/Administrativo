@@ -71,12 +71,12 @@ public class EstudianteAdapter extends BaseAdapter
         ImageView ivFoto = (ImageView) convertView.findViewById(R.id.iv_item_estudiante_foto);
 
         Estudiante estudiante = estudiantes.get(position);
-        if(estudiante.getIdentificacion() == 0)
+      /*  if(estudiante.getIdentificacion() == 0)
         {
-         ll.removeAllViews();
+         //ll.removeAllViews();
         }
         else
-        {
+        {*/
             Uri uri = pathToUri(estudiante.getFoto());
 
             if (!uri.equals(Uri.EMPTY))
@@ -88,9 +88,10 @@ public class EstudianteAdapter extends BaseAdapter
                 ivFoto.setImageResource(R.mipmap.ic_launcher);
             }
 
+
             tvNombre.setText(estudiante.getNombres());
             tvApellido.setText(estudiante.getApellidos());
-        }
+        //}
 
         return convertView;
     }
