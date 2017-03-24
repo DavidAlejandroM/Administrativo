@@ -49,7 +49,8 @@
 
 
         <activity android:name=".Vista.Asistencia"></activity>
-        <activity android:name=".Vista.vistasMetas.PrincipalMetas"></activity>
+        <activity android:name=".Vista.vistasMetas.PrincipalMetas"
+            android:label="Metas"></activity>
         <activity android:name=".Vista.vistasMetas.CreacionMeta"></activity>
         <activity android:name=".Vista.vistasMetas.Cumplimiento"></activity>
         <activity android:name=".Vista.vistasMetas.Estadistica"></activity>

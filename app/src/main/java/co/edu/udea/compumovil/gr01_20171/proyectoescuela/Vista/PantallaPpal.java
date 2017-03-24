@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
@@ -58,6 +59,14 @@ public class PantallaPpal extends AppCompatActivity {
         Intent intent = getIntent();
         grupo = (Grupo) intent.getSerializableExtra(GRUPO);
 
+
+        if (tipoVista == 2)
+        {
+            LinearLayout ll = (LinearLayout) findViewById(R.id.contenedor_botones_principal);
+            Button button = (Button) findViewById(R.id.btn_ubicacion);
+            ll.removeView(button);
+
+        }
     }
 
     public void ClckIrSeguimientoCognitivo(View view)

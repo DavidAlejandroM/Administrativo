@@ -85,7 +85,7 @@ public class EstudianteAdapter extends BaseAdapter
             }
             else
             {
-                ivFoto.setImageResource(R.mipmap.ic_launcher);
+                ivFoto.setImageResource(R.mipmap.ic_nino_ubicacion);
             }
 
 
