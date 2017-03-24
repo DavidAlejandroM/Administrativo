@@ -59,6 +59,7 @@ public class PantallaPpal extends AppCompatActivity {
         Intent intent = getIntent();
         grupo = (Grupo) intent.getSerializableExtra(GRUPO);
 
+
         if (tipoVista == 2)
         {
             LinearLayout ll = (LinearLayout) findViewById(R.id.contenedor_botones_principal);
@@ -66,7 +67,6 @@ public class PantallaPpal extends AppCompatActivity {
             ll.removeView(button);
 
         }
-
     }
 
     public void ClckIrSeguimientoCognitivo(View view)
@@ -119,7 +119,7 @@ public class PantallaPpal extends AppCompatActivity {
         intent.putStringArrayListExtra("valX", estadistica.listarEstudiantes(estudiantes));
         intent.putExtra("valSi",estadistica.obtenerValSiGeneral(estudiantes));
         intent.putExtra("valNo", estadistica.obtenerValNoGeneral(estudiantes));
-        intent.putExtra("abrirBarra", true);
+        intent.putExtra("abrirBarra", false);
         intent.putExtra("tipoEstadistica", 1);
         startActivity(intent);
     }
