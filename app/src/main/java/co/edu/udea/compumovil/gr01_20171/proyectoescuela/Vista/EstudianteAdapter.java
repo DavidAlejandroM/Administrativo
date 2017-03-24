@@ -71,12 +71,7 @@ public class EstudianteAdapter extends BaseAdapter
         ImageView ivFoto = (ImageView) convertView.findViewById(R.id.iv_item_estudiante_foto);
 
         Estudiante estudiante = estudiantes.get(position);
-      /*  if(estudiante.getIdentificacion() == 0)
-        {
-         //ll.removeAllViews();
-        }
-        else
-        {*/
+
             Uri uri = pathToUri(estudiante.getFoto());
 
             if (!uri.equals(Uri.EMPTY))
@@ -91,7 +86,7 @@ public class EstudianteAdapter extends BaseAdapter
 
             tvNombre.setText(estudiante.getNombres());
             tvApellido.setText(estudiante.getApellidos());
-        //}
+
 
         return convertView;
     }

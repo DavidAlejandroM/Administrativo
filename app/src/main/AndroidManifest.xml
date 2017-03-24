@@ -6,26 +6,44 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:largeHeap="true">
 
+        <activity android:name=".Vista.InicioActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".Vista.PantallaPpal"
-            android:parentActivityName=".Vista.InicioActivity" />
+            android:label=""
+            android:parentActivityName=".Vista.InicioActivity"
+            />
 
         <activity
             android:name=".Vista.SeguimientoCognitivo"
             android:label="@string/title_activity_seguimiento_cognitivo"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:parentActivityName=".Vista.PantallaPpal"
+            />
+
+        <activity
+            android:name=".Vista.SegCogEstudiante"
+            android:screenOrientation="landscape"
+            android:label="Seguimiento Cognitivo Estudiante"
+            android:parentActivityName=".Vista.SeguimientoCognitivo"
+            />
 
         <activity android:name=".Vista.AgregarEstudiantes"
             android:parentActivityName=".Vista.PantallaProfesor"/>
 
-        <activity android:name=".Vista.SegCogEstudiante" />
+
 
         <activity
             android:name=".Vista.PantallaConfiguracion"
@@ -39,13 +57,6 @@
 
         <activity android:name=".Vista.ListarEstudiantes" />
 
-        <activity android:name=".Vista.InicioActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
 
         <activity android:name=".Vista.Asistencia"></activity>
@@ -62,10 +73,14 @@
         <activity
             android:name=".Vista.EstadisticaModel"
             android:label="@string/title_activity_estadistica_model"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
         <!-- <activity android:name=".Vista.AsistenciaEstudianteAdapter" /> -->
-        <activity android:name=".Vista.MateriaAdicion"
-            android:parentActivityName=".Vista.PantallaProfesor"/>
+        <activity
+            android:name=".Vista.MateriaAdicion"
+            android:parentActivityName=".Vista.PantallaProfesor"
+            />
 
         <activity android:name=".Vista.ListarEstudiantesAsistencia"></activity>
         <activity android:name=".Vista.InfoAsistenciaGrupo"></activity>
