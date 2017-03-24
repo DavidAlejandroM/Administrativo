@@ -1,0 +1,15 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/contenedor_item_estudiante"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    tools:context="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.Ubicacion"
+        android:orientation="vertical">
+
+            <GridView
+                android:id="@+id/grid_view_ubicacion_estudiante"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+</LinearLayout>

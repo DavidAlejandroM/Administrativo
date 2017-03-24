@@ -4,34 +4,32 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.OperacionesBaseDeDatos;
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO.Categoria;
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO.Estudiante;
-import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO.Materia;
+import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO.Seguimiento;
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO.Subcategoria;
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.R;
 
-import static co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.ListarEstudiantes.estudiantes;
+public class SegEticoEstudiante extends Activity implements AdapterView.OnItemSelectedListener{
 
-public class SegEticoEstudiante extends Activity {
 
-    private ArrayList<Categoria> categorias;
-    private ArrayList<Subcategoria> subcategorias;
 
     private Estudiante estudiante;
     private OperacionesBaseDeDatos manager;
@@ -40,10 +38,15 @@ public class SegEticoEstudiante extends Activity {
     private TextView tv_nombre;
     private TextView tv_apellido;
     private TextView tv_identificacion;
+    private ListView lv_subcategorias;
 
+    private ArrayList<Categoria> categorias;
+    private ArrayList<Subcategoria> subcategorias;
     private String[] nombreCategorias;
     private String[] nombreSubcategorias;
     private int[] contadores;
+    private String APROVACION = "si";
+    private Spinner sp_categorias;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,17 +56,24 @@ public class SegEticoEstudiante extends Activity {
         manager = OperacionesBaseDeDatos.obtenerInstancia(getApplicationContext());
         estudiante = manager.obtenerEstudiante(id);
         llenarDatosEstudiante();
-        llenarGridViewCategorias();
-        llenarGridViewSubcategorias();
+        sp_categorias = (Spinner) findViewById(R.id.spinner_etico_estudiante);
+        llenarGridViewSubcategorias("Todas");
+
 
     }
 
     @Override
     protected void onResume() {
         llenarGridViewCategorias();
-        llenarGridViewSubcategorias();
         super.onResume();
+        llenarSpinner();
+        sp_categorias = (Spinner) findViewById(R.id.spinner_etico_estudiante);
+        sp_categorias.setOnItemSelectedListener(this);
+        llenarGridViewSubcategorias(sp_categorias.getSelectedItem().toString());
+
     }
+
+
 
     private void llenarGridViewCategorias() {
         categorias = manager.obtenerCategorias(2);
@@ -86,9 +96,19 @@ public class SegEticoEstudiante extends Activity {
     }
 
 
-    private  void llenarGridViewSubcategorias(){
-        ArrayList<Subcategoria> todasSubcategorias = new ArrayList<Subcategoria>();
+    private  void llenarGridViewSubcategorias(String categoria){
+
+        lv_subcategorias = (ListView) findViewById(R.id.list_view_subcategorias);
+        final ArrayList<Subcategoria> todasSubcategorias = new ArrayList<Subcategoria>();
         categorias = manager.obtenerCategorias(2);
+        if(!categoria.equals("Todas")){
+            for(int i =0;i<categorias.size();i++){
+                Categoria c = categorias.get(i);
+                if(!c.getNombre().equals(categoria)){
+                    categorias.remove(i);
+                }
+            }
+        }
         if(categorias == null){
             return;
         }
@@ -104,20 +124,20 @@ public class SegEticoEstudiante extends Activity {
                 todasSubcategorias.add(subcategorias.get(y));
             }
         }
-
-        CategoriaAdapter adaptador = new CategoriaAdapter(this, todasSubcategorias,categorias.get(0));
-
-        final GridView gridEstudiante = (GridView) findViewById(R.id.grid_view_subcategorias);
-        gridEstudiante.setAdapter(adaptador);
-        gridEstudiante.setNumColumns(nombreCategorias.length);
-
-        /*gridEstudiante.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        if(todasSubcategorias.size()==0){
+            return;
+        }
+        CategoriaAdapter adaptador = new CategoriaAdapter(getApplicationContext(), todasSubcategorias,categorias,-1);
+        lv_subcategorias.setAdapter(adaptador);
+        lv_subcategorias.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Toast.makeText(getApplicationContext(),"El estudiante ha realizado "+nombreSubcategorias[position],Toast.LENGTH_SHORT).show();
+                Seguimiento seguimiento = new Seguimiento(todasSubcategorias.get(position).getId(),
+                        estudiante.getIdentificacion(),APROVACION,giveDate(),2,1);
+                manager.insertarSeguimiento(seguimiento);
+                Toast.makeText(getApplicationContext(),"El estudiante ha realizado "+todasSubcategorias.get(position).getNombre(),Toast.LENGTH_SHORT).show();
             }
-        });*/
+        });
     }
 
     private void llenarDatosEstudiante(){
@@ -159,5 +179,41 @@ public class SegEticoEstudiante extends Activity {
     public void clickIrAgregarSubcategoria(View view){
         Intent intent = new Intent(this,AgregarSubcategoriaEtico.class);
         startActivity(intent);
+    }
+
+    public static String giveDate() {
+        Calendar cal = Calendar.getInstance();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(cal.getTime());
+
+    }
+
+    public void llenarSpinner(){
+        categorias = manager.obtenerCategorias(2);
+        if(categorias == null){
+            return;
+        }
+        nombreCategorias = new String[categorias.size()+1];
+
+        int size=categorias.size();
+        nombreCategorias[0]="Todas";
+        for(int x=1;x<=size;x++) {
+            nombreCategorias[x]= categorias.get(x-1).getNombre();
+        }
+        sp_categorias = (Spinner) findViewById(R.id.spinner_etico_estudiante);
+        sp_categorias.setAdapter(new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, nombreCategorias));
+    }
+
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        sp_categorias = (Spinner) findViewById(R.id.spinner_etico_estudiante);
+        llenarGridViewSubcategorias(sp_categorias.getSelectedItem().toString());
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

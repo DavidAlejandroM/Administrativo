@@ -33,22 +33,28 @@ public class ListarEstudiantes extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar_estudiantes);
+
         getApplicationContext().deleteDatabase("pedidos.db");
         datos = OperacionesBaseDeDatos.obtenerInstancia(getApplicationContext());
+
         intent = getIntent();
         bundle = intent.getExtras();
         grupo = (Grupo) intent.getSerializableExtra("GRUPO");
+
         estudiantes = retornaEstudiantes(grupo);
+
         list = (ListView)findViewById(R.id.list);
         final CustomListAdapter customListAdapter = new CustomListAdapter(getApplicationContext()
                 ,R.layout.custom_list_layout);
         customListAdapter.clear();
+
         if(estudiantes != null){
         for(Estudiante estudiante : estudiantes){
             customListAdapter.add(estudiante);
             }
         }
         customListAdapter.notifyDataSetChanged();
+
         if(customListAdapter != null && list!=null && estudiantes!=null ){
             list.setAdapter(customListAdapter);
         }

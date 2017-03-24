@@ -22,8 +22,7 @@ import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.EstudianteAdapter
  */
 
 
-public final class
-OperacionesBaseDeDatos {
+public final class OperacionesBaseDeDatos {
 
     private static ManejaSQL baseDatos;
 
@@ -58,6 +57,46 @@ OperacionesBaseDeDatos {
         db.insertOrThrow(ManejaSQL.Tablas.TBL_ESTUDIANTE, null, valores);
     }
 
+    public boolean insertarEstudiante2(co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO.Estudiante estudiante) {
+
+        SQLiteDatabase db = baseDatos.getWritableDatabase();
+
+        String query = String.format("SELECT MAX(%s) %s FROM %s WHERE %s = %s AND %s = '%s'",
+                ContratoEscuela.ColumnasEstudiante.EST_POS_FILA,
+                ContratoEscuela.ColumnasEstudiante.EST_POS_FILA,
+                ManejaSQL.Tablas.TBL_ESTUDIANTE,
+                ContratoEscuela.ColumnasEstudiante.EST_GRP_CURSO,
+                estudiante.getCurso(),
+                ContratoEscuela.ColumnasEstudiante.EST_GRP_GRUPO,
+                estudiante.getGrupo());
+        int filamax = 0;
+        Cursor cursor = db.rawQuery(query,null);
+        if(cursor.getCount() > 0)
+        {
+            cursor.moveToFirst();
+            filamax = cursor.getInt(0);
+        }
+
+        ContentValues valores = new ContentValues();
+        valores.put(ContratoEscuela.Estudiantes.EST_IDENTIFICACION, estudiante.getIdentificacion());
+        valores.put(ContratoEscuela.Estudiantes.EST_NOMBRES, estudiante.getNombres());
+        valores.put(ContratoEscuela.Estudiantes.EST_APELLIDOS, estudiante.getApellidos());
+        valores.put(ContratoEscuela.Estudiantes.EST_FOTO, estudiante.getFoto());
+        valores.put(ContratoEscuela.Estudiantes.EST_GRP_CURSO, estudiante.getCurso());
+        valores.put(ContratoEscuela.Estudiantes.EST_GRP_GRUPO, estudiante.getGrupo());
+        valores.put(ContratoEscuela.Estudiantes.EST_POS_COL, estudiante.getPosColumna());
+        valores.put(ContratoEscuela.Estudiantes.EST_POS_FILA, filamax+1);
+        long response = db.insertOrThrow(ManejaSQL.Tablas.TBL_ESTUDIANTE, null, valores);
+        if (response != -1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     /**
      * Método para agregar grupos a la tabla de grupos
      */
@@ -67,6 +106,8 @@ OperacionesBaseDeDatos {
         ContentValues valores = new ContentValues();
         valores.put(ContratoEscuela.Grupos.GRP_CURSO, grupo.getCurso());
         valores.put(ContratoEscuela.Grupos.GRP_GRUPO, grupo.getGrupo());
+        valores.put(ContratoEscuela.Grupos.GRP_FILAS, grupo.getFilas());
+        valores.put(ContratoEscuela.Grupos.GRP_COLUMNAS, grupo.getColumnas());
         db.insertOrThrow(ManejaSQL.Tablas.TBL_GRUPO, null, valores);
     }
 
@@ -192,6 +233,19 @@ OperacionesBaseDeDatos {
         db.insertOrThrow(ManejaSQL.Tablas.TBL_SEGUIMIENTO, null, valores);
     }
 
+    public void actualizarFila(int identificacionEstudiante, int posicionFila)
+    {
+        if(identificacionEstudiante != 0) {
+            SQLiteDatabase db = baseDatos.getWritableDatabase();
+            ContentValues valores = new ContentValues();
+            valores.put(ContratoEscuela.ColumnasEstudiante.EST_POS_FILA, posicionFila);
+            db.update(ManejaSQL.Tablas.TBL_ESTUDIANTE,
+                    valores,
+                    ContratoEscuela.Estudiantes.EST_IDENTIFICACION +" = "+String.valueOf(identificacionEstudiante),
+                    null);
+        }
+    }
+
     /**
      * Método para obtener datos de la base de datos es necesario pasar por parametro
      * la secuencia que indica que datos se deberían retornar.
@@ -201,18 +255,24 @@ OperacionesBaseDeDatos {
         return db.rawQuery(sentence, null);
     }
 
+    /**
+     * Obtiene los registros de los estudiantes que pertenezcan al grupo pasado por parametro
+     *
+     * */
     public ArrayList<Estudiante> obtenerEstudiantesDB(Grupo grupo) {
         String consulta;
 
         if(grupo != null){
 
-        consulta = String.format("SELECT %s.* FROM %s WHERE (%s=%s AND %s='%s')",ManejaSQL.Tablas.TBL_ESTUDIANTE
+        consulta = String.format("SELECT %s.* FROM %s WHERE (%s=%s AND %s='%s') ORDER BY %s ASC",ManejaSQL.Tablas.TBL_ESTUDIANTE
                 ,ManejaSQL.Tablas.TBL_ESTUDIANTE,
                 ContratoEscuela.Estudiantes.EST_GRP_CURSO,grupo.getCurso(),
-                ContratoEscuela.Estudiantes.EST_GRP_GRUPO,grupo.getGrupo());
+                ContratoEscuela.Estudiantes.EST_GRP_GRUPO,grupo.getGrupo(),
+                ContratoEscuela.Estudiantes.EST_POS_FILA);
 
         }else{
-         consulta = String.format("SELECT * FROM %s", ManejaSQL.Tablas.TBL_ESTUDIANTE);}
+         consulta = String.format("SELECT * FROM %s ORDER BY %s ASC", ManejaSQL.Tablas.TBL_ESTUDIANTE,
+                 ContratoEscuela.Estudiantes.EST_POS_FILA);}
 
         Cursor estudiantes = obtenerDataDB(consulta);
 
@@ -234,20 +294,31 @@ OperacionesBaseDeDatos {
         }
 
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Grupo> obtenerGruposDB() {
         String consulta = "SELECT * FROM tbl_grupo";
         Cursor grupos = obtenerDataDB(consulta);
         Grupo grupo;
         ArrayList<Grupo> grupoAL = new ArrayList<>();
-        if (grupos.moveToFirst()) {
-            do {
-                grupo = new Grupo(grupos.getInt(0), grupos.getString(1));
-                grupoAL.add(grupo);
-            } while (grupos.moveToNext());
+        if(grupos.getCount() != 0)
+        {
+            if (grupos.moveToFirst()) {
+                do {
+                    grupo = new Grupo(grupos.getInt(0), grupos.getString(1),grupos.getInt(2),grupos.getInt(3));
+                    grupoAL.add(grupo);
+                } while (grupos.moveToNext());
+            }
+
         }
         return grupoAL;
     }
 
+    /**
+     * Obtiene todos los registros de asistencia de la base de datos
+     * */
     public ArrayList<Asistencia> obtenerAsistencia(){
         String consulta = String.format("SELECT * FROM %s",ManejaSQL.Tablas.TBL_ASISTENCIA);
         Cursor asistencia = obtenerDataDB(consulta);
@@ -262,6 +333,78 @@ OperacionesBaseDeDatos {
         return asistenciaAL;
     }
 
+    /**
+     * Se actualizan los valores pertenecientes al registro de asistencia cuyos campos idEstudiante y fecha
+     * coincidan con los ingresados por parametro a traves del objeto asistencia.
+     * */
+    public boolean actualizarAsistencia(Asistencia asistencia){
+        SQLiteDatabase db = baseDatos.getWritableDatabase();
+        ContentValues valores = new ContentValues();
+        valores.put(ContratoEscuela.Asistencia.AST_FECHA,asistencia.getFecha());
+        valores.put(ContratoEscuela.Asistencia.AST_EST_ID,asistencia.getIdEstudiante());
+        valores.put(ContratoEscuela.Asistencia.AST_ASISTENCIA,asistencia.getAsistencia());
+        String selection = String.format("%s=? AND %s=?",
+                ContratoEscuela.Asistencia.AST_FECHA, ContratoEscuela.Asistencia.AST_EST_ID);
+        final String[] whereArgs = {asistencia.getFecha(),Integer.toString(asistencia.getIdEstudiante())};
+
+        int resultado = db.update(ManejaSQL.Tablas.TBL_ASISTENCIA, valores, selection, whereArgs);
+
+        return resultado > 0;
+
+    }
+
+    /**
+     * Obtiene los registros de asistencias pertenecientes al estudiante cuyo id ha sido pasado por parametro
+     *
+     * */
+    public ArrayList<Asistencia> obtenerAsistenciaEstudiante(String idEstudiante){
+        String consulta;
+
+        consulta = String.format("SELECT %s.* FROM %s WHERE (%s=%s)",ManejaSQL.Tablas.TBL_ASISTENCIA
+                    ,ManejaSQL.Tablas.TBL_ASISTENCIA,
+                    ContratoEscuela.Asistencia.AST_EST_ID,idEstudiante);
+
+        Cursor asistencias = obtenerDataDB(consulta);
+        Asistencia asistencia;
+        ArrayList<Asistencia> asistenciasAL = new ArrayList<>();
+        asistenciasAL.clear();
+
+        if(asistencias.moveToFirst()){
+            do{
+                asistencia = new Asistencia(asistencias.getString(0),asistencias.getInt(1),asistencias.getString(2));
+                asistenciasAL.add(asistencia);
+            }while(asistencias.moveToNext());
+        }
+        return asistenciasAL;
+    }
+
+    /**
+     * Retorna el registro de fecha de un día especifico para un estudiante
+     * @param idEstudiante
+     * @return
+     */
+    public Asistencia obtenerAsistenciaEstudianteDia(String idEstudiante,String fecha){
+        String consulta;
+
+        consulta = String.format("SELECT %s.* FROM %s WHERE (%s=%s AND %s='%s')",ManejaSQL.Tablas.TBL_ASISTENCIA
+                ,ManejaSQL.Tablas.TBL_ASISTENCIA,
+                ContratoEscuela.Asistencia.AST_EST_ID,idEstudiante,
+                ContratoEscuela.Asistencia.AST_FECHA,fecha);
+
+        Cursor asistencias = obtenerDataDB(consulta);
+        Asistencia asistencia= new Asistencia();
+
+        if(asistencias.moveToFirst()){
+            do{
+                asistencia = new Asistencia(asistencias.getString(0),asistencias.getInt(1),asistencias.getString(2));
+            }while(asistencias.moveToNext());
+        }
+        return asistencia;
+    }
+
+    /**
+     * Borra el registro del estudiante cuyo id haya sido pasado por parametros de la tabla tbl_estudiantes
+     * */
     public boolean borrarEstudiante(String idEstudiante){
         SQLiteDatabase db = baseDatos.getWritableDatabase();
         String whereClause = String.format("%s=?", ContratoEscuela.Estudiantes.EST_IDENTIFICACION);
@@ -420,6 +563,64 @@ OperacionesBaseDeDatos {
         return materias;
     }
 
+    public ArrayList<Seguimiento> obtenerSeguimientoFromIdCategoriaIdEstudiante(int idCategoria,int idEstudiante)
+    {
+        ArrayList<Seguimiento> seguimientos = new ArrayList<Seguimiento>();
+        String query = String.format("SELECT  * FROM tbl_seguimiento  " +
+                "INNER JOIN tbl_subcategorias ON tbl_seguimiento.seg_subc_id = " +
+                "tbl_subcategorias.subc_id WHERE tbl_subcategorias.subc_cat_id = %s AND " +
+                "tbl_seguimiento.seg_est_id = %s",idCategoria,idEstudiante);
+
+        Cursor cursor = obtenerDataDB(query);
+        cursor.moveToFirst();
+        for(int i = 0; i < cursor.getCount();i++)
+        {
+            Seguimiento seguimiento = new Seguimiento(cursor.getInt(1),
+                    cursor.getInt(2),
+                    cursor.getString(3),
+                    cursor.getString(4),
+                    cursor.getInt(5),
+                    cursor.getInt(6));
+            seguimientos.add(seguimiento);
+
+            if (!cursor.isLast())
+            {
+                cursor.moveToNext();
+            }
+        }
+
+        return seguimientos;
+    }
+
+    public int countSeguimientoFromIdSubcategoriIdEstudiante(int idSubCategoria,int idEstudiante, String estado)
+    {
+        String query = String.format("SELECT  * FROM %s WHERE %s = %s AND %s = %s AND %s = '%s'",
+                ManejaSQL.Tablas.TBL_SEGUIMIENTO,
+                ContratoEscuela.ColumnasSeguimiento.SEG_EST_ID,
+                idEstudiante,
+                ContratoEscuela.ColumnasSeguimiento.SEG_SUBC_ID,
+                idSubCategoria,ContratoEscuela.ColumnasSeguimiento.SEG_ESTADO, estado);
+        Cursor cursor = obtenerDataDB(query);
+
+        return cursor.getCount();
+    }
+
+    public int countSeguimientoFromIdSubcategoriIdEstudianteIdMateria(int idSubCategoria,int idEstudiante, int idMateria,String estado)
+    {
+        String query = String.format("SELECT  * FROM %s WHERE %s = %s AND %s = %s AND %s = '%s' AND %s = %s",
+                ManejaSQL.Tablas.TBL_SEGUIMIENTO,
+                ContratoEscuela.ColumnasSeguimiento.SEG_EST_ID,
+                idEstudiante,
+                ContratoEscuela.ColumnasSeguimiento.SEG_SUBC_ID,
+                idSubCategoria,ContratoEscuela.ColumnasSeguimiento.SEG_ESTADO,
+                estado,
+                ContratoEscuela.Seguimiento.SEG_MAT_ID,
+                idMateria);
+
+        Cursor cursor = obtenerDataDB(query);
+
+        return cursor.getCount();
+    }
 
 
 

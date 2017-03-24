@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minHeight="179dp"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_alignTop="@+id/textView2"
+        android:layout_alignLeft="@+id/editText2"
+        android:layout_alignStart="@+id/editText2" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_alignTop="@+id/textView3"
+        android:layout_alignLeft="@+id/editText3"
+        android:layout_alignStart="@+id/editText3" />
+
+    <Button
+        android:id="@+id/btn_ingresar_profesor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingresar Foto"
+        android:layout_alignBottom="@+id/quickContactBadge"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/btn_ingresar_profesor"
+        android:layout_marginEnd="77dp"
+        android:layout_marginRight="77dp"
+        android:text="Registrar" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="0dp"
+        android:text="Ingrese Nombre"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/quickContactBadge"
+        android:layout_alignStart="@+id/quickContactBadge"
+        android:layout_marginTop="21dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingrese Apellido"
+        android:textSize="14sp"
+        android:layout_below="@+id/editText"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_marginTop="18dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Identificación"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/quickContactBadge"
+        android:layout_alignStart="@+id/quickContactBadge" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_alignBaseline="@+id/textView4"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_toLeftOf="@+id/button2"
+        android:layout_toStartOf="@+id/button2" />
+
+    <ImageView
+        android:id="@+id/quickContactBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="91dp"
+        android:minWidth="130dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/editText3"
+        android:layout_toLeftOf="@+id/editText3"
+        android:layout_toStartOf="@+id/editText3"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:src="@mipmap/ic_launcher"/>
+
+</RelativeLayout>

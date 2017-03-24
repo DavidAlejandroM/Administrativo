@@ -2,6 +2,7 @@ package co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,9 +15,7 @@ import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO.Estudiante;
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO.Grupo;
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.R;
 
-
 public class EstadisticaEtico extends Activity {
-
     private ArrayList<Estudiante> estudiantes;
     private Grupo grupo;
     private int[] contadores;
@@ -59,7 +58,7 @@ public class EstadisticaEtico extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent intent = new Intent(EstadisticaEtico.this, EstadisticasEticoEstudiante.class);
+                Intent intent = new Intent(EstadisticaEtico.this, EstadisticaEticoEstudiante.class);
                 intent.putExtra("id",estudiantes.get(position).getIdentificacion());
                 startActivity(intent);
             }

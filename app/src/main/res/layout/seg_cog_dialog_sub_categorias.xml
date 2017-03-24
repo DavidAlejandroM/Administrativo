@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:minWidth="1000dp"
+    android:minHeight="450dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/colorPrimary">
+        <TextView
+            android:id="@+id/tv_dialog_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/analizar"
+            android:textAlignment="center"
+            android:textColor="@color/titulo_categoria_cognitivo"
+            android:textSize="@dimen/titulo_1_size"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+        <EditText
+            android:id="@+id/et_dialog_add_nombre_subcategoria"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="3"
+            android:elegantTextHeight="false"
+            android:textColor="@color/titulo_categoria_cognitivo"
+            android:theme="@style/AlertDialog.AppCompat"
+            android:inputType="textCapWords"/>
+
+        <ImageButton
+            android:id="@+id/ibtn_dialog_agregar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@color/transparente"
+            android:src="@drawable/ic_plus_circle_white_48dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/contenedor_lista_subcategorias_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="vertical">
+        <ListView
+            android:id="@+id/lv_dialog_subcategorias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </ListView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+
+    </LinearLayout>
+</LinearLayout>

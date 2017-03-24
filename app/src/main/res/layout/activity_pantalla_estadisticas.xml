@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.PantallaEstadisticas">
+
+    <Button
+        android:id="@+id/btn_est_asistencia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView15"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="83dp"
+        android:onClick="clickEstadAsistencia"
+        android:text="Asistencia"
+        tools:layout_editor_absoluteX="74dp"
+        tools:layout_editor_absoluteY="95dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seguimiento Cognitivo"
+        android:id="@+id/btn_est_cognitivo"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/btn_seguimiento_etico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_est_cognitivo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Seguimiento ético y comportamental" />
+
+    <Button
+        android:id="@+id/btn_est_metas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/btn_est_asistencia"
+        android:layout_alignRight="@+id/btn_est_asistencia"
+        android:layout_below="@+id/btn_seguimiento_etico"
+        android:layout_marginTop="31dp"
+        android:text="Metas" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:text="ESTADÍSTICAS"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:id="@+id/textView15"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

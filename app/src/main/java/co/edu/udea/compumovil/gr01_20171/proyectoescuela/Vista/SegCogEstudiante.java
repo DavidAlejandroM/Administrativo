@@ -44,6 +44,7 @@ public class SegCogEstudiante extends Activity {
 
     private String APROVACION = "si";
     private String RECHAZO = "no";
+
     private boolean confirmar = false;
 
     private ListView lv_aplicar;

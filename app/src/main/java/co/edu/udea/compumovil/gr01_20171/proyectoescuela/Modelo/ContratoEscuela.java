@@ -24,6 +24,8 @@ public class ContratoEscuela {
     interface ColumnasGrupo{
         String GRP_CURSO = "grp_curso";
         String GRP_GRUPO = "grp_grupo";
+        String GRP_FILAS = "grp_filas";
+        String GRP_COLUMNAS = "grp_columnas";
     }
 
     interface ColumnasMaterias{
@@ -160,10 +162,10 @@ public class ContratoEscuela {
     public static class ListaGrupoEstudiantes implements ColumnasListaGrupoEstudiantes{
 
     }
-
+/*
     public static class CumplimientoMetas implements ColumnasCumplimientoMetas{
 
-    }
+    }*/
 
     private ContratoEscuela(){}
 

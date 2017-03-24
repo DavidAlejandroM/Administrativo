@@ -1,18 +1,16 @@
 package co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista;
 
 import android.content.Context;
-import android.net.Uri;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -35,15 +33,29 @@ public class CategoriaAdapter extends BaseAdapter {
     private String[] nombreSubcategorias;
     private TextView nombreCategoria;
     private TextView nombreSubcategoria;
-    private Button cantidad;
+    private TextView tv_cantidad;
+    private int cantidad;
+    private ArrayList<Subcategoria> subs;
+    Estudiante estudiante;
 
 
-    public CategoriaAdapter(Context context, ArrayList<Subcategoria> subcategorias, Categoria categoria)
+    public CategoriaAdapter(Context context, ArrayList<Subcategoria> subcategorias, ArrayList<Categoria> categorias,int cantidad)
     {
         this.context = context;
         this.subcategorias = subcategorias;
-        this.categoria = categoria;
+        this.categorias = categorias;
+        this.cantidad = cantidad;
+        manager = OperacionesBaseDeDatos.obtenerInstancia(context);
 
+    }
+
+    public CategoriaAdapter(Context context, ArrayList<Subcategoria> subcategorias, ArrayList<Categoria> categorias,Estudiante estudiante)
+    {
+        this.context = context;
+        this.subcategorias = subcategorias;
+        this.categorias = categorias;
+        this.estudiante = estudiante;
+        manager = OperacionesBaseDeDatos.obtenerInstancia(context);
     }
 
     @Override
@@ -64,29 +76,48 @@ public class CategoriaAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+
         if (convertView == null)
         {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.item_categoria_adapter,parent,false);
+
         }
 
         nombreCategoria = (TextView) convertView.findViewById(R.id.subCategoria_nombre_categoria);
         nombreSubcategoria = (TextView) convertView.findViewById(R.id.Subcategoria_nombre_subcategoria);
-        cantidad = (Button) convertView.findViewById(R.id.btn_cantidad_subcategoria);
+        tv_cantidad = (TextView) convertView.findViewById(R.id.Subcategoria_cantidad_subcategoria);
+
+        categoria = obtenerCategoriaFromSub(subcategorias.get(position),position);
+
+
+        if(cantidad != -1){
+            cantidad = manager.countSeguimientoFromIdSubcategoriIdEstudiante(subcategorias.get(position).getId(),
+                    estudiante.getIdentificacion(),"si");
+            tv_cantidad.setText(Integer.toString(cantidad));
+        }
+
 
         nombreCategoria.setText(categoria.getNombre());
         nombreSubcategoria.setText(subcategorias.get(position).getNombre());
-        cantidad.setText("");
-
-
         return convertView;
     }
 
-    private void clicbtnCantidad(View view){
-        cantidad = (Button) view.findViewById(R.id.btn_cantidad_subcategoria);
-
-        cantidad.setText(cantidad.getText().toString()+"*");
+    private Categoria obtenerCategoriaFromSub(Subcategoria subcategoria, int position){
+        Categoria c= null;
+        categorias = manager.obtenerCategorias(2);
+        ArrayList<Subcategoria> subs;
+        for (int i = 0;i<categorias.size();i++){
+            subs = manager.obtenerSubCategoriasFromCategoriaId(categorias.get(i).getId());
+            for(int j =0;j<subs.size();j++){
+                String s1 = subs.get(j).getNombre();
+                String s2 = subcategorias.get(position).getNombre();
+                if(s1.equalsIgnoreCase(s2)){
+                    c = categorias.get(i);
+                    return(c);
+                }
+            }
+        }
+        return(c);
     }
-
-
 }

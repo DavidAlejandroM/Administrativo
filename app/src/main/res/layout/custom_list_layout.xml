@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2">
+
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="100dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/imgEst"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:src="@mipmap/ic_launcher" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                ></LinearLayout>
+            <TextView
+                android:id="@+id/txtNombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre Estudiante"
+                android:textSize="16sp"
+                />
+            <TextView
+                android:id="@+id/txtApellido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Apellido Estudiante"
+                android:textSize="16sp"
+                />
+            <TextView
+                android:id="@+id/txtIde"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Identificación"
+                android:textSize="16sp"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                ></LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="100dp"
+            android:layout_weight="1">
+            <Button
+                android:id="@+id/eliminarEst"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:text="Eliminar"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -7,6 +7,9 @@ public class Asistencia {
     private int idEstudiante;
     private String asistencia;
 
+    public Asistencia() {
+    }
+
     public Asistencia(String fecha, int idEstudiante, String asistencia) {
         this.fecha = fecha;
         this.idEstudiante = idEstudiante;

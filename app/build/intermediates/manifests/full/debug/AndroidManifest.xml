@@ -25,7 +25,9 @@
             android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.SeguimientoCognitivo"
             android:label="@string/title_activity_seguimiento_cognitivo"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.AgregarEstudiantes" />
+        <activity
+            android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.AgregarEstudiantes"
+            android:parentActivityName="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.PantallaProfesor" />
         <activity android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.SegCogEstudiante" />
         <activity
             android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.PantallaConfiguracion"
@@ -33,7 +35,9 @@
         <activity
             android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.PantallaProfesor"
             android:parentActivityName="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.PantallaConfiguracion" />
-        <activity android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.DialogAgregarGrupos" />
+        <activity
+            android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.DialogAgregarGrupos"
+            android:parentActivityName="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.PantallaProfesor" />
         <activity android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.ListarEstudiantes" />
         <activity android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.InicioActivity" >
             <intent-filter>
@@ -42,11 +46,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.Asistencia" />
+        <activity android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista$AsistenciaEstudianteAdapter" />
+        <activity android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.PantallaEstadisticas" />
+        <activity android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.InfoAsistenciaEstudiante" />
+        <activity android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.AsistenciaV" />
+        <activity
+            android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.EstadisticaModel"
+            android:label="@string/title_activity_estadistica_model"
+            android:theme="@style/AppTheme.NoActionBar" />
         <!-- <activity android:name=".Vista.AsistenciaEstudianteAdapter" /> -->
         <activity
             android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.MateriaAdicion"
             android:parentActivityName="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.PantallaProfesor" />
+        <activity android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.ListarEstudiantesAsistencia" />
+        <activity android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.InfoAsistenciaGrupo" />
+        <activity android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.Ubicacion" />
         <activity
             android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.SeguimientoEtico"
             android:label="@string/title_activity_seguimiento_etico"
@@ -59,6 +73,8 @@
         <activity android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.AgregarSubcategoriaEtico" />
         <activity android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.EstadisticasEticoEstudiante" />
         <activity android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.EstadisticaEtico" />
+        <activity android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.EstadisticaEticoEstudiante" />
+        <activity android:name="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.EstadisticaEticoEstudianteFecha" />
     </application>
 
 </manifest>

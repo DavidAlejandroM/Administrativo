@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_seguimiento_etico"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.SeguimientoEtico"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/contenedor_ubicacion"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/fragment_contenedor_funcionalidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_green_light"
+            android:orientation="vertical"></LinearLayout>
+
+        <GridView
+            android:id="@+id/grid_view_ubicacion"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -28,26 +28,34 @@ public class PantallaConfiguracion extends AppCompatActivity {
         getApplicationContext().deleteDatabase("pedidos.db");
         datos = OperacionesBaseDeDatos.obtenerInstancia(getApplicationContext());
 
-        Button ingresoProfesor = (Button)findViewById(R.id.btn_ingreso_profe);
-        ingresoProfesor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent vistaProfe = new Intent(PantallaConfiguracion.this,PantallaProfesor.class);
-                startActivity(vistaProfe);
-            }
-        });
-        Button prueba = (Button) findViewById(R.id.pruebita);
-        prueba.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                grupos= datos.obtenerGruposDB();
-                gruposString=convertirGrupos(grupos);
-                AlertDialog dialog = listarGrupos(gruposString);
-                dialog.show();
-            }
-        });
     }
 
+    /**
+     * Acciona el botón "Ver Grupos" , obtienes los grupos de la base de datos y los muestra
+     * @param view: le entra una vista como parámetro.
+     */
+    public void clickVerGrupos(View view){
+        grupos= datos.obtenerGruposDB();
+        gruposString=convertirGrupos(grupos);
+        AlertDialog dialog = listarGrupos(gruposString);
+        dialog.show();
+    }
+
+    /**
+     * Acciona el botón "Agregar Elementos" y pasa a la siguiente Activity para agregar los elementos.
+     * @param view : Entra una vista como parámetro.
+     */
+    public void clickAgregarElementos(View view){
+        Intent vistaProfe = new Intent(PantallaConfiguracion.this,PantallaProfesor.class);
+        startActivity(vistaProfe);
+    }
+
+    /**
+     * Toma los grupos que se tiene registrados hastta el momento y los procesa para mosrarlos
+     * como una cadena completa de Strings de la siguiente forma "1-a"
+     * @param a Entra un Arraylist de tipo grupo con los grupos almacenados actualmente.
+     * @return Arraylist con los grupos del tipo String.
+     */
     public ArrayList<String> convertirGrupos (ArrayList<Grupo> a){
         ArrayList<String> gruposs = new ArrayList<>();
         Grupo aux;
@@ -58,6 +66,12 @@ public class PantallaConfiguracion extends AppCompatActivity {
         return gruposs;
     }
 
+    /**
+     * Organiza el ArrayList con los grupos tipo String para mostrarlos en un Alert Dialog
+     * y que el ususario pueda seleccionar el grupo que desee.
+     * @param a: Arraylist con los grupos a mostrar.
+     * @return Alert Dialog con los grupos contenidos en el.
+     */
     public AlertDialog listarGrupos(ArrayList<String> a){
         AlertDialog.Builder builder = new AlertDialog.Builder(PantallaConfiguracion.this);
         final CharSequence[] items = new CharSequence[a.size()];

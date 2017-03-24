@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.InfoAsistenciaEstudiante">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="119dp"
+                android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/iv_ima_est"
+            android:layout_width="108dp"
+            android:layout_height="108dp"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/txt_name_est"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:text="Nombre Estudiante" />
+
+                </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.8">
+
+                    <TextView
+                        android:id="@+id/textView28"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Faltas:"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.2"> </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/et_nroFaltas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="3"
+                        android:inputType="textPersonName"
+                        android:text="Name" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.8">
+
+                    <TextView
+                        android:id="@+id/textView29"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Llegadas tarde:"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.2"> </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/et_nroTarde"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="3"
+                        android:inputType="textPersonName"
+                        android:text="Name" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.8">
+
+                    <TextView
+                        android:id="@+id/textView30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Faltas el último mes:"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.2"> </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/et_faltasMes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="3"
+                        android:inputType="textPersonName"
+                        android:text="Name" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.8">
+
+                    <TextView
+                        android:id="@+id/textView31"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Llgadas tarde el último mes:"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.2"> </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/et_tardeMes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="3"
+                        android:inputType="textPersonName"
+                        android:text="Name" />
+
+                </LinearLayout>
+
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"></LinearLayout>
+
+    </LinearLayout>
+
+    </ScrollView>
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:weightSum="3"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="Fecha Faltas" />
+
+            <ListView
+                android:id="@+id/lv_faltas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:background="#4A9C67"
+                >
+            </ListView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:gravity="center_vertical"
+                android:text="Fecha llegadas tarde" />
+
+            <ListView
+                android:id="@+id/lv_tarde"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:background="#4A9C67" >
+            </ListView>
+        </LinearLayout>
+    </ScrollView>
+        </LinearLayout>
+
+</LinearLayout>
+
+

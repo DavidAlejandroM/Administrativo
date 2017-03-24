@@ -1,6 +1,8 @@
 package co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO;
 
-public class Materia {
+import java.io.Serializable;
+
+public class Materia implements Serializable{
     private int id;
     private String nombre;
 

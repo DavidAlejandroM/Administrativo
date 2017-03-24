@@ -3,16 +3,18 @@ package co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO;/*
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import java.io.Serializable;
 /**
  *
  * @author andres.pinov
  */
-public class Subcategoria {
+public class Subcategoria implements Serializable{
     private int id;
     private int idCat;
     private String nombre;
     private String icono;
+    private int valorSi;
+    private int valorNo;
 
     public Subcategoria(int idCat, String nombre) {
         this.idCat = idCat;
@@ -51,5 +53,15 @@ public class Subcategoria {
         this.icono = icono;
     }
 
-    
+    public int getValorSi() { return valorSi;  }
+
+    public void setValorSi(int valorSi) { this.valorSi = valorSi; }
+
+    public int getValorNo() {
+        return valorNo;
+    }
+
+    public void setValorNo(int valorNo) {
+        this.valorNo = valorNo;
+    }
 }

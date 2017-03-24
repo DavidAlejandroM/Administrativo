@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.AgregarEstudiantes">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"></LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/nombreEstudiante"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords|textPersonName"
+                android:hint="Nombre"
+                android:textSize="14sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"></LinearLayout>
+
+            <EditText
+                android:id="@+id/apellidoEstudiante"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Apellido"
+                android:inputType="textCapWords|textPersonName"
+
+                android:textSize="14sp" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"></LinearLayout>
+            <EditText
+                android:id="@+id/idEstudiante"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Identificación"
+
+                android:textSize="14sp"
+                android:numeric="integer"
+                android:inputType="number"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"></LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3">
+
+
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"></LinearLayout>
+
+        <Button
+            android:id="@+id/returnbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Regresar" />
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="0.2">
+
+            <Button
+                android:id="@+id/addFoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Agregar Foto" />
+
+            <ImageView
+                android:id="@+id/imgEstudiante"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="100dp"
+                android:layout_height="70dp"></ImageView>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/anadirEst"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Añadir" />
+
+
+
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"></LinearLayout>
+    </LinearLayout>
+
+
+
+</LinearLayout>

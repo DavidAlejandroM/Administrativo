@@ -1,7 +1,5 @@
 package co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO;
 
-import java.util.ArrayList;
-
 public class Categoria
 {
     private int id;
@@ -11,12 +9,13 @@ public class Categoria
     /**
      * Constructor de la clase Categoria
      * @param nombre
-     * @param tipo el tipo de dato es entero si es 1 es COGNITIVA   si es 2 es COMPORTAMENTAL/ETICO
+     * @param tipo el tipo de dato es entero si es 1 es COGNITIVA   si es 2 es COMPORTAMENTAL
      */
 
     public Categoria(String nombre,int tipo) {
         this.nombre = nombre;
         this.tipo = tipo;
+
     }
 
     public Categoria(String nombre,int tipo, int id) {
@@ -49,6 +48,4 @@ public class Categoria
 
         return tipo;
     }
-
-
 }

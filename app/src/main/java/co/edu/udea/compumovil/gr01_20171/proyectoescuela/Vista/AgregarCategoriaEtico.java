@@ -1,7 +1,6 @@
 package co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -30,7 +29,13 @@ public class AgregarCategoriaEtico extends Activity {
 
     public void clickCategoriaEtico(View view){
         nombre = (EditText) findViewById(R.id.agregar_nombre_categoria_etico);
-
+        String nom = nombre.getText().toString();
+        if(nom.equalsIgnoreCase("")){
+            Toast mensaje = Toast.makeText(this,"No se ha llenado el campo correctamente", Toast.LENGTH_SHORT);
+            mensaje.setGravity(Gravity.CENTER|Gravity.LEFT,0,0);
+            mensaje.show();
+            return;
+        }
 
         Categoria categoria = new Categoria(nombre.getText().toString(),2);
         manager.insertarCategorias(categoria);

@@ -81,8 +81,9 @@ public class ManejaSQL extends SQLiteOpenHelper {
 
         //GRUPO
         s = String.format("CREATE TABLE %s ( %s INTEGER ," +
-                        "%s VARCHAR(2) )",
-                Tablas.TBL_GRUPO, ContratoEscuela.Grupos.GRP_CURSO, ContratoEscuela.Grupos.GRP_GRUPO);
+                        "%s VARCHAR(2),%s INTEGER, %s INTEGER )",
+                Tablas.TBL_GRUPO, ContratoEscuela.Grupos.GRP_CURSO, ContratoEscuela.Grupos.GRP_GRUPO,
+                ContratoEscuela.Grupos.GRP_FILAS, ContratoEscuela.Grupos.GRP_COLUMNAS);
         db.execSQL(s);
 
         //ESTUDIANTE**

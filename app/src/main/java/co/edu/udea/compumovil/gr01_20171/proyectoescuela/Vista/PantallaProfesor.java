@@ -30,9 +30,11 @@ public class PantallaProfesor extends AppCompatActivity {
     FloatingActionButton agregar;
     EditText grado ;
     EditText ngrupo;
-
+    FloatingActionButton subirE;
+    FloatingActionButton agregarM;
     ArrayList<String> gruposString = new ArrayList<>();
     ArrayList<Grupo> grupos = new ArrayList<>();
+    ArrayList<Grupo> totalGrupos = new ArrayList<>();
 
 
     @Override
@@ -42,14 +44,20 @@ public class PantallaProfesor extends AppCompatActivity {
 
         grado = (EditText)findViewById(R.id.numGrado);
         ngrupo = (EditText)findViewById(R.id.idenGrupo);
-
+        subirE=(FloatingActionButton) findViewById(R.id.btn_subirEstudiantes);
+        agregarM=(FloatingActionButton)findViewById(R.id.btn_materias);
         getApplicationContext().deleteDatabase("pedidos.db");
         datos = OperacionesBaseDeDatos.obtenerInstancia(getApplicationContext());
-
+        //totalGrupos= datos.obtenerGruposDB();
 
     }
 
-
+    /**
+     * Organiza el ArrayList con los grupos tipo String para mostrarlos en un Alert Dialog
+     * y que el ususario pueda seleccionar el grupo que desee.
+     * @param a: Arraylist con los grupos a mostrar.
+     * @return Alert Dialog con los grupos contenidos en el.
+     */
     public AlertDialog listarGrupos(ArrayList<String> a){
         AlertDialog.Builder builder = new AlertDialog.Builder(PantallaProfesor.this);
         final CharSequence[] items = new CharSequence[a.size()];
@@ -67,7 +75,12 @@ public class PantallaProfesor extends AppCompatActivity {
 
         return builder.create();
     }
-
+    /**
+     * Toma los grupos que se tiene registrados hastta el momento y los procesa para mosrarlos
+     * como una cadena completa de Strings de la siguiente forma "1-a"
+     * @param a Entra un Arraylist de tipo grupo con los grupos almacenados actualmente.
+     * @return Arraylist con los grupos del tipo String.
+     */
     public ArrayList<String> convertirGrupos (ArrayList<Grupo> a){
         ArrayList<String> gruposs = new ArrayList<>();
         Grupo aux;
@@ -78,11 +91,19 @@ public class PantallaProfesor extends AppCompatActivity {
         return gruposs;
     }
 
+    /**Acciona y pasa a la siguiente actividad para agregar los grupos
+     *
+     * @param v : Recibe una vista
+     */
     public void clickAgregarGrupo(View v){
         Intent ingresar = new Intent(PantallaProfesor.this,DialogAgregarGrupos.class);
         startActivity(ingresar);
     }
 
+    /**
+     * Acciona el botón y permite registrar cada uno de los estudiantes del grupo
+     * @param v: Recibe una vista
+     */
     public void clickSubirEstudiantes(View v){
         grupos= datos.obtenerGruposDB();
         gruposString=convertirGrupos(grupos);
@@ -90,6 +111,10 @@ public class PantallaProfesor extends AppCompatActivity {
         dialog.show();
     }
 
+    /**
+     * Acciona el botón y permite pasa la actividad para agregar las materias a dictar.
+     * @param view: Recibe una vista
+     */
     public void clickMaterias(View view)
     {
         Intent intent = new Intent(this, MateriaAdicion.class);

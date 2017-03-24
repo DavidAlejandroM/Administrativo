@@ -101,8 +101,10 @@ public class CustomListAdapter extends ArrayAdapter<Estudiante> {
 
         apellidoEst = (TextView)convertView.findViewById(R.id.txtApellido);
         apellidoEst.setText(estudiante.getApellidos());
+
         idEst = (TextView)convertView.findViewById(R.id.txtIde);
         idEst.setText(Integer.toString(estudiante.getIdentificacion()));
+
         nombreEst.setTextColor(Color.BLACK);
         apellidoEst.setTextColor(Color.BLACK);
         idEst.setTextColor(Color.BLACK);

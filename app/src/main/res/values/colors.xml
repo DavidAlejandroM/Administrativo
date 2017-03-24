@@ -2,5 +2,19 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#ff4081</color>
+    <color name="titulo_categoria_cognitivo">#ffffff</color>
+    <color name="transparente">#00fefefe</color>
+
+    <drawable name="yellow_color">#FDD835</drawable>
+    <drawable name="red_color">#FF5722</drawable>
+
+    <color name="green_color_icon">#43A047</color>
+    <color name="background_card_view">#bbbebc</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="colorBlanco">#ffffff</color>
+    <color name="colorNegro">#060000</color>
+
+
 </resources>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.DialogAgregarGrupos">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="0.5"
+        android:orientation="horizontal"> </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"></LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6">
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Grado:"
+                    android:textSize="20dp"
+                    android:textColor="@android:color/black" />
+
+                <EditText
+                    android:id="@+id/numGrado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="2"
+                    android:maxLength="2"
+                    android:inputType="number" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"></LinearLayout>
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:text="Grupo:"
+                    android:textColor="@android:color/black" />
+
+                <EditText
+                    android:id="@+id/idenGrupo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="2"
+                    android:maxLength="1"
+                    android:inputType="textPersonName|textCapCharacters" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_weight="0.6">
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:text="Filas:"
+                    android:textColor="@android:color/black" />
+
+                <EditText
+                    android:id="@+id/nro_filas"
+                    android:layout_width="60dp"
+                    android:maxLength="1"
+                    android:inputType="number"
+                    android:layout_height="wrap_content"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"></LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:text="Columnas:"
+                    android:textColor="@android:color/black" />
+
+                <EditText
+                    android:id="@+id/nro_columnas"
+                    android:layout_width="60dp"
+                    android:maxLength="1"
+                    android:inputType="number"
+                    android:layout_height="wrap_content"
+                    />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"></LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3">
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"></LinearLayout>
+        <Button
+            android:id="@+id/btn_agregarGrupo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clickGuardarGrupo"
+            android:text="Agregar" />
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_finalizar_grupos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Finalizar" />
+
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"></LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

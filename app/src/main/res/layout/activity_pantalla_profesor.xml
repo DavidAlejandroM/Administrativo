@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.PantallaProfesor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"></LinearLayout>
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.6">
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Agregar grupo"
+                    android:layout_gravity="center"
+                    android:textColor="@android:color/black"/>
+
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"></LinearLayout>
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/btn_agregarGrupo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="clickAgregarGrupo"
+                    android:clickable="true"
+                    app:backgroundTint="@android:color/holo_green_dark"
+                    app:fabSize="mini"
+                    android:layout_gravity="center"
+                    app:srcCompat="@android:drawable/ic_input_add"
+                    tools:onClick="clickAgregarGrupo" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.6">
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Subir estudiantes:"
+                    android:layout_gravity="center"
+                    android:textColor="@android:color/black" />
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"></LinearLayout>
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/btn_subirEstudiantes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="clickSubirEstudiantes"
+                    android:clickable="true"
+                    app:backgroundTint="@android:color/holo_green_dark"
+                    app:fabSize="mini"
+                    android:layout_gravity="center"
+                    app:srcCompat="@android:drawable/ic_menu_upload"
+                    tools:onClick="clickSubirEstudiantes" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.6">
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Agregar Materias:"
+                    android:layout_gravity="center"
+                    android:textColor="@android:color/black" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2">
+
+                </LinearLayout>
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/btn_materias"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="clickMaterias"
+                    android:clickable="true"
+                    app:backgroundTint="@android:color/holo_green_dark"
+                    app:fabSize="mini"
+                    android:layout_gravity="center"
+                    app:srcCompat="@android:drawable/ic_input_add"
+                    tools:onClick="clickSubirEstudiantes" />
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.4">
+
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"></LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

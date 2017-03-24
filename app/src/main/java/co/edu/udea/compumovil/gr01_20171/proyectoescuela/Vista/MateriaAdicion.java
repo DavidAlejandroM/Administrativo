@@ -49,8 +49,10 @@ public class MateriaAdicion extends AppCompatActivity {
             strMaterias[n - 1 - i] = materias.get(i).getNombre();
         }
 
+       /* ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
+                android.R.layout.simple_list_item_1,strMaterias);*/
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
-                android.R.layout.simple_list_item_1,strMaterias);
+                R.layout.item_simple_1,strMaterias);
 
         lv_materias.setAdapter(adapter);
     }

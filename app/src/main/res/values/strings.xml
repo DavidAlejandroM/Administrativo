@@ -1,3 +1,46 @@
 <resources>
     <string name="app_name">ProyectoEscuela</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="title_activity_seguimiento_cognitivo">SeguimientoCognitivo</string>
+
+    <string name="grupo_guardado_msg">Grupo guardado</string>
+    <string name="estudiantes_guardadps_msg">Se han guardado los estudiantes</string>
+
+    <string name="title_activity_agregar_estudiante">AgregarEstudiante</string>
+
+
+    <!-- strings Seguimiento cognitivo -->
+    <string name="recordar">Recordar</string>
+    <string name="comprender">Comprender</string>
+    <string name="aplicar">Aplicar</string>
+    <string name="analizar">Analizar</string>
+    <string name="evaluar">Evaluar</string>
+    <string name="crear">Crear</string>
+
+    <!-- String pantalla principal-->
+    <string name="seguimiento_cognitivo">Seguimiento Cognitivo</string>
+    <string name="seguimiento_etico">Seguimiento Etico</string>
+    <string name="metas">Metas</string>
+    <string name="asistencia">Asistencia</string>
+    <string name="title_activity_estadistica_model">activity_estadistica_model</string>
+    <string name="ubicacion">Ubicación</string>
+
+
+    <string-array name="filtros">
+        <item>Asistencia</item>
+        <item>Falta</item>
+    </string-array>
+
+    <!--Strings Etico-->
+    <string name="title_activity_seguimiento_etico"></string>
+    <string name="title_activity_seg_etico_estudiante">SegEticoEstudiante</string>
+    <string name="agregar_categoria">+ Categoria</string>
+    <string name="agregar_subcategoria">+ Subcategoria</string>
+    <string name="title_activity_categoria_adapter">CategoriaAdapter</string>
+
 </resources>
+

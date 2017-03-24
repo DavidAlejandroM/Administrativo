@@ -1,41 +1,52 @@
 package co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
+import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.OperacionesBaseDeDatos;
+import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO.Asistencia;
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO.Estudiante;
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.R;
 
 /**
- * Created by ACER on 17/03/2017.
+ * Created by ACER on 18/03/2017.
  */
 
 public class AsistenciaEstudianteAdapter extends BaseAdapter {
-
     private Context context;
     private ArrayList<Estudiante> estudiantes;
+    private static Asistencia asistenciaC;
 
     /*variable temporales*/
     private String[] nombres;
     private String[] apellidos;
     private String[] fotos;
+    private static OperacionesBaseDeDatos datos;
+
     public AsistenciaEstudianteAdapter(Context context, ArrayList<Estudiante> estudiantes)
     {
+        context.deleteDatabase("pedidos.db");
+        datos = OperacionesBaseDeDatos.obtenerInstancia(context);
         //public EstudianteAdapter(Context context, String[] nombres, String[] apellidos) {
         this.context = context;
         this.estudiantes = estudiantes;
         /*this.nombres = nombres;
         this.apellidos = apellidos;*/
     }
+
     @Override
     public int getCount() {
         //return nombres.length;
@@ -74,8 +85,21 @@ public class AsistenciaEstudianteAdapter extends BaseAdapter {
         }else{
             imageEst.setImageResource(R.mipmap.ic_launcher);
         }
-        //tvNombre.setText(this.nombres[position]);
-        //tvApellido.setText(this.apellidos[position]);
+
+        asistenciaC = retornaAsistenciaDia(Long.toString(getItemId(position))
+                ,giveDate());
+        if(asistenciaC!=null && asistenciaC.getAsistencia()!=null)
+        {
+            if(asistenciaC.getAsistencia().equals("faltó"))
+            {
+                LinearLayout ll = (LinearLayout) convertView.findViewById(R.id.contenedor_item_estudiante);
+                ll.setBackgroundColor(Color.RED);
+            }else
+            {
+                LinearLayout ll = (LinearLayout) convertView.findViewById(R.id.contenedor_item_estudiante);
+                ll.setBackgroundColor(Color.YELLOW);
+            }
+        }
 
         tvNombre.setText(this.estudiantes.get(position).getNombres());
         tvApellido.setText(this.estudiantes.get(position).getApellidos());
@@ -91,5 +115,28 @@ public class AsistenciaEstudianteAdapter extends BaseAdapter {
 
         }
         return Uri.EMPTY;
+    }
+
+    public static String giveDate() {
+        Calendar cal = Calendar.getInstance();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(cal.getTime());
+
+    }
+
+    private  static Asistencia retornaAsistenciaDia(String id, String fecha){
+        Asistencia asistencia=new Asistencia();
+        try {
+            datos.getDb().beginTransaction();
+            asistencia = datos.obtenerAsistenciaEstudianteDia(id,fecha);
+            datos.getDb().setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            datos.getDb().endTransaction();
+        }
+        return asistencia;
+
     }
 }

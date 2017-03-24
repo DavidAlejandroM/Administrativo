@@ -5,6 +5,32 @@ import java.io.Serializable;
 public class Grupo implements Serializable{
     private int curso;
     private String grupo;
+    private int filas;
+    private int columnas;
+
+    public int getFilas() {
+        return filas;
+    }
+
+    public void setFilas(int filas) {
+        this.filas = filas;
+    }
+
+    public int getColumnas() {
+        return columnas;
+    }
+
+    public void setColumnas(int columnas) {
+        this.columnas = columnas;
+    }
+
+    public Grupo(int curso, String grupo, int filas, int columnas) {
+
+        this.curso = curso;
+        this.grupo = grupo;
+        this.filas = filas;
+        this.columnas = columnas;
+    }
 
     public Grupo(int curso, String grupo) {
         this.curso = curso;

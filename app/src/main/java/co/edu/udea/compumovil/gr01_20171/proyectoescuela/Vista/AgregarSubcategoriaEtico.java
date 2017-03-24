@@ -1,8 +1,6 @@
 package co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista;
 
 import android.app.Activity;
-import android.support.annotation.StringDef;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -40,6 +38,13 @@ public class AgregarSubcategoriaEtico extends Activity {
 
     public void clickSubcategoriaEtico(View view){
         nombre = (EditText) findViewById(R.id.agregar_nombre_subcategoria_etico);
+        String nom = nombre.getText().toString();
+        if(nom.equalsIgnoreCase("")){
+            Toast mensaje = Toast.makeText(this,"No se ha llenado el campo correctamente", Toast.LENGTH_SHORT);
+            mensaje.setGravity(Gravity.CENTER|Gravity.LEFT,0,0);
+            mensaje.show();
+            return;
+        }
         sp_categorias = (Spinner) findViewById(R.id.spinner_categorias);
         String nomCategoria = sp_categorias.getSelectedItem().toString();
         Categoria categoria = manager.obtenerCategoria(2,nomCategoria);
