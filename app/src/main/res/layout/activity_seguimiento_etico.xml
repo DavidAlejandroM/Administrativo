@@ -22,7 +22,7 @@
             android:orientation="vertical"></LinearLayout>
 
         <GridView
-            android:id="@+id/grid_view_ubicacion"
+            android:id="@+id/grid_view_ubicacion_etico"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

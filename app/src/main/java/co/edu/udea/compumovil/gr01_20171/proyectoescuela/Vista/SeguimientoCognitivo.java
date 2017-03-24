@@ -72,32 +72,18 @@ public class SeguimientoCognitivo extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 idEstudiante = estudiantes.get(position).getIdentificacion();
                 estadistica.setIdEstudiante(idEstudiante);
-                //Toast.makeText(SeguimientoCognitivo.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(SeguimientoCognitivo.this, SegCogEstudiante.class);
-                intent.putExtra("id",estudiantes.get(position).getIdentificacion());
-                //startActivity(intent);
 
-                if(tipoVista == 1){
+                if(tipoVista == 1 && idEstudiante != 0){
 
                     intent = new Intent(SeguimientoCognitivo.this, SegCogEstudiante.class);
                     intent.putExtra("id",estudiantes.get(position).getIdentificacion());
                     startActivity(intent);
 
-                }else if(tipoVista == 2){
+                }else if(tipoVista == 2 && idEstudiante != 0){
                     AlertDialog dialog = listarOpcionesMatGral();
                     dialog.show();
-                   /* intent = new Intent(SeguimientoCognitivo.this, EstadisticaModel.class);
-
-
-             //       intent.putStringArrayListExtra("valX",listarCategorias(categorias));
-                    intent.putStringArrayListExtra("valX",listarSubCategorias(categorias.get(1)));
-                    intent.putExtra("valSI", asignarValoresSi(subcategorias));
-                    intent.putExtra("valNo", asignarValoresNo(subcategorias));
-
-                    startActivity(intent);*/
-
-                }
+                 }
 
             }
         });

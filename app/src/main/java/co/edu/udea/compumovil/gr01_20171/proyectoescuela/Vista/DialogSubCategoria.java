@@ -58,7 +58,7 @@ public class DialogSubCategoria extends DialogFragment {
 
         setDataListView();
 
-        Toast.makeText(getActivity().getApplicationContext(),"dialogActivo",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(),"dialogActivo",Toast.LENGTH_SHORT).show();
     }
 
     private void init(final View view)
@@ -87,12 +87,16 @@ public class DialogSubCategoria extends DialogFragment {
                 }
                 else
                 {
-
                     Toast.makeText(getActivity().getApplicationContext(),"No Insertado",Toast.LENGTH_SHORT).show();
-
                 }
             }
         });
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        getActivity().recreate();
     }
 
     private void setDataListView()
