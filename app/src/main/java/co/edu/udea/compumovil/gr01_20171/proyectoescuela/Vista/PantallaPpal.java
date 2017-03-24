@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
@@ -58,18 +59,13 @@ public class PantallaPpal extends AppCompatActivity {
         Intent intent = getIntent();
         grupo = (Grupo) intent.getSerializableExtra(GRUPO);
 
-/*
-        //Voy a probar una pantalla en el botón de asistencia que nos corresponde :D
-        Button asistencia = (Button) findViewById(R.id.btn_asistencia);
-        asistencia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent ingresar = new Intent(PantallaPpal.this, AsistenciaV.class);
-                ingresar.putExtra("GRUPO",grupo);
-                startActivity(ingresar);
-            }
-        });
-*/
+        if (tipoVista == 2)
+        {
+            LinearLayout ll = (LinearLayout) findViewById(R.id.contenedor_botones_principal);
+            Button button = (Button) findViewById(R.id.btn_ubicacion);
+            ll.removeView(button);
+
+        }
 
     }
 
