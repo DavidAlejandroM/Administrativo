@@ -116,6 +116,7 @@ public class SeguimientoCognitivo extends Activity {
                 intent.putExtra("abrirBarra", true);
                 intent.putExtra("tipoEstadistica", 1);
                 intent.putExtra("materia", estadistica.getMateria());
+                intent.putExtra("titulo","Categorias");
 
                 startActivity(intent);
             }

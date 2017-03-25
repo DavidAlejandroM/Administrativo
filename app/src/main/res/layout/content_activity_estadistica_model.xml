@@ -8,6 +8,19 @@
     tools:context="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.EstadisticaModel"
     tools:showIn="@layout/activity_estadistica_model">
 
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="35dp"
+            android:textAlignment="center"
+            android:text="Grafica"
+            android:id="@+id/titulo_estadisticas"
+            android:textColor="@color/black"/>
+    </android.support.v7.widget.LinearLayoutCompat>
+
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barChart"
         android:layout_width="0dp"
