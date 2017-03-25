@@ -31,6 +31,7 @@ public class SeguimientoCognitivo extends Activity {
     private int idEstudiante;
     private Intent intent;
     private EstadisticaCognitiva estadistica;
+    private Estudiante estudiante;
 
 
     private OperacionesBaseDeDatos manager;
@@ -70,7 +71,10 @@ public class SeguimientoCognitivo extends Activity {
         gridEstudiante.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                idEstudiante = estudiantes.get(position).getIdentificacion();
+                estudiante = estudiantes.get(position);
+                idEstudiante = estudiante.getIdentificacion();
+
+
                 estadistica.setIdEstudiante(idEstudiante);
 
 
@@ -116,7 +120,7 @@ public class SeguimientoCognitivo extends Activity {
                 intent.putExtra("abrirBarra", true);
                 intent.putExtra("tipoEstadistica", 1);
                 intent.putExtra("materia", estadistica.getMateria());
-                intent.putExtra("titulo","Categorias");
+                intent.putExtra("titulo","General categorías "+estudiante.getNombres());
 
                 startActivity(intent);
             }

@@ -81,9 +81,9 @@ public class EstadisticaModel extends Activity {
         }
 
         BarDataSet set1, set2;
-        set1 = new BarDataSet(yVals1, "SI");
+        set1 = new BarDataSet(yVals1, "Cumplió");
         set1.setColor(Color.rgb(175,203,122));
-        set2 = new BarDataSet(yVals2, "NO");
+        set2 = new BarDataSet(yVals2, "No cumplió");
         set2.setColor(Color.rgb(253,116,116));
         BarData data = new BarData(set1, set2);
         data.setValueFormatter(new LargeValueFormatter());
@@ -154,7 +154,7 @@ public class EstadisticaModel extends Activity {
                 intent.putStringArrayListExtra("valX",estadistica.listarSubCategorias(cat.getId()));
                 intent.putExtra("valSi",valSi );
                 intent.putExtra("valNo", valNo);
-                intent.putExtra("titulo","SubCategorias");
+                intent.putExtra("titulo","SubCategorías de "+cat.getNombre());
                 intent.putExtra("abrirBarra", false);
                 startActivity(intent);
 
@@ -170,7 +170,7 @@ public class EstadisticaModel extends Activity {
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         l.setDrawInside(true);
-        l.setYOffset(20f);
+        l.setYOffset(25f);
         l.setXOffset(0f);
         l.setYEntrySpace(0f);
         l.setTextSize(8f);
