@@ -63,7 +63,7 @@ public class PantallaPpal extends AppCompatActivity {
         if (tipoVista == 2)
         {
             LinearLayout ll = (LinearLayout) findViewById(R.id.contenedor_botones_principal);
-            Button button = (Button) findViewById(R.id.btn_ubicacion);
+            ImageButton button = (ImageButton) findViewById(R.id.btn_ubicacion);
             ll.removeView(button);
 
         }
@@ -121,6 +121,7 @@ public class PantallaPpal extends AppCompatActivity {
         intent.putExtra("valNo", estadistica.obtenerValNoGeneral(estudiantes));
         intent.putExtra("abrirBarra", false);
         intent.putExtra("tipoEstadistica", 1);
+        intent.putExtra("titulo","General Estudiantes");
         startActivity(intent);
     }
 

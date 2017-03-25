@@ -1,10 +1,13 @@
 package co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
@@ -30,7 +33,7 @@ import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO.Materia;
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO.Subcategoria;
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.R;
 
-public class EstadisticaModel extends AppCompatActivity {
+public class EstadisticaModel extends Activity {
     private BarChart chart;
     private float barWidth;
     private float barSpace;
@@ -47,6 +50,9 @@ public class EstadisticaModel extends AppCompatActivity {
         setTitle(R.string.agregar_categoria);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_estadistica_model);
+
+        TextView et_titulo = (TextView) findViewById(R.id.titulo_estadisticas);
+        et_titulo.setText(getIntent().getStringExtra("titulo"));
 
         valX = (ArrayList<String>) getIntent().getSerializableExtra("valX");
         valSi = (List) getIntent().getSerializableExtra("valSi");
@@ -148,6 +154,7 @@ public class EstadisticaModel extends AppCompatActivity {
                 intent.putStringArrayListExtra("valX",estadistica.listarSubCategorias(cat.getId()));
                 intent.putExtra("valSi",valSi );
                 intent.putExtra("valNo", valNo);
+                intent.putExtra("titulo","SubCategorias");
                 intent.putExtra("abrirBarra", false);
                 startActivity(intent);
 
