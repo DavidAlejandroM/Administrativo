@@ -77,18 +77,23 @@ public class DialogSubCategoria extends DialogFragment {
             @Override
             public void onClick(View v) {
 
-                Subcategoria sub = new Subcategoria(idCategoria,et_sub_categoria.getText().toString());
-                if(manager.insertarSubCategorias(sub))
+                String nombreSub = et_sub_categoria.getText().toString();
+                if(!nombreSub.isEmpty())
                 {
+                    Subcategoria sub = new Subcategoria(idCategoria,nombreSub);
+                    if(manager.insertarSubCategorias(sub))
+                    {
 
-                    Toast.makeText(getActivity().getApplicationContext(),"Insertado",Toast.LENGTH_SHORT).show();
-                    setDataListView();
-                    et_sub_categoria.setText("");
+                        Toast.makeText(getActivity().getApplicationContext(),"Insertado",Toast.LENGTH_SHORT).show();
+                        setDataListView();
+                        et_sub_categoria.setText("");
+                    }
+                    else
+                    {
+                        Toast.makeText(getActivity().getApplicationContext(),"No Insertado",Toast.LENGTH_SHORT).show();
+                    }
                 }
-                else
-                {
-                    Toast.makeText(getActivity().getApplicationContext(),"No Insertado",Toast.LENGTH_SHORT).show();
-                }
+
             }
         });
     }
