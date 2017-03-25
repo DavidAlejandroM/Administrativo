@@ -158,12 +158,11 @@ public class EstadisticaCognitiva {
             int valSi = obtenerValSiSubcategoria(subcategorias.get(i),idEstudiante);
             int valNo = obtenerValNoSubcategoria(subcategorias.get(i),idEstudiante);
 
-            if (valSi ==0 && valNo==0){
-                gano=0;
-            }
-            if (valSi>= valNo){
-                gano++;
-            }
+
+                if (valSi >= valNo && (valSi!=0 || valNo!=0)) {
+                    gano++;
+                }
+
         }
         return gano;
     }
@@ -180,10 +179,8 @@ public class EstadisticaCognitiva {
             int valSi = obtenerValSiSubcategoria(subcategorias.get(i),idEstudiante);
             int valNo = obtenerValNoSubcategoria(subcategorias.get(i),idEstudiante);
 
-            if (valSi ==0 && valNo==0){
-                perdio= 0;
-            }
-            if (valNo> valSi){
+
+            if (valNo> valSi &&(valSi!=0) || (valNo!=0)){
                 perdio++;
             }
         }
