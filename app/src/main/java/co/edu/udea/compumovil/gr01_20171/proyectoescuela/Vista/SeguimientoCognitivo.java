@@ -40,9 +40,6 @@ public class SeguimientoCognitivo extends Activity {
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seguimiento_cognitivo);
-
-
-
         manager = OperacionesBaseDeDatos.obtenerInstancia(getApplicationContext());
         estadistica = new EstadisticaCognitiva(manager);
         grupo = (Grupo) getIntent().getSerializableExtra("GRUPO");
@@ -52,32 +49,25 @@ public class SeguimientoCognitivo extends Activity {
 
     }
 
-
+    /**
+     * Metodo encargado de crear la grilla para mostrar los estudiantes de acuerdo a su ubicacion
+     */
     private void crearGridView()
     {
         estudiantes = manager.obtenerEstudiantesDB(grupo);
 
         estudiantes = completarEstudiantes(estudiantes,grupo.getColumnas()*grupo.getFilas());
 
-
         EstudianteAdapter adapter = new EstudianteAdapter(this, estudiantes);
-
         GridView gridEstudiante = (GridView) findViewById(R.id.grid_view_ubicacion);
-
         gridEstudiante.setAdapter(adapter);
-
         gridEstudiante.setNumColumns(grupo.getFilas());
-
         gridEstudiante.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 estudiante = estudiantes.get(position);
                 idEstudiante = estudiante.getIdentificacion();
-
-
                 estadistica.setIdEstudiante(idEstudiante);
-
-
                 if(tipoVista == 1 && idEstudiante != 0){
 
                     intent = new Intent(SeguimientoCognitivo.this, SegCogEstudiante.class);
@@ -93,42 +83,51 @@ public class SeguimientoCognitivo extends Activity {
         });
     }
 
+
+    /**
+     * Metodo para listar las materias 
+     * @return
+     */
     public AlertDialog listarOpcionesMatGral(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         final ArrayList<Materia> materias =  manager.obtenerMaterias();
         final CharSequence[] items = new CharSequence[materias.size()];
 
-
-
-
             for (int i=0; i<items.length;i++){
                 items[i] = materias.get(i).getNombre();
             }
 
-
-
-        intent = new Intent(this, EstadisticaModel.class);
         builder.setTitle("Seleccione una opción").setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+            mostrarEstadistica(materias, which);
 
-                estadistica.setMateria(materias.get(which));
-                intent.putStringArrayListExtra("valX", estadistica.listarCategorias(categorias));
-                intent.putExtra("valSi",estadistica.obtenerValSiCategorias(categorias, idEstudiante));
-                intent.putExtra("valNo", estadistica.obtenerValNoCategorias(categorias, idEstudiante));
-                intent.putExtra("idEstudiante", idEstudiante);
-                intent.putExtra("abrirBarra", true);
-                intent.putExtra("tipoEstadistica", 1);
-                intent.putExtra("materia", estadistica.getMateria());
-                intent.putExtra("titulo","General categorías "+estudiante.getNombres());
-
-                startActivity(intent);
             }
         });
 
         return builder.create();
 
+    }
 
+    /**
+     * Muestra las estadistica
+     * @param materias
+     * @param which
+     */
+    public void mostrarEstadistica(ArrayList materias,int which){
+
+        estadistica.setMateria((Materia)materias.get(which));
+        intent = new Intent(this, EstadisticaModel.class);
+        intent.putStringArrayListExtra("valX", estadistica.listarCategorias(categorias));
+        intent.putExtra("valSi",estadistica.obtenerValSiCategorias(categorias, idEstudiante));
+        intent.putExtra("valNo", estadistica.obtenerValNoCategorias(categorias, idEstudiante));
+        intent.putExtra("idEstudiante", idEstudiante);
+        intent.putExtra("abrirBarra", true);
+        intent.putExtra("tipoEstadistica", 1);
+        intent.putExtra("materia", estadistica.getMateria());
+        intent.putExtra("titulo","General categorías "+estudiante.getNombres());
+
+        startActivity(intent);
     }
 
     @Override

@@ -55,7 +55,7 @@
         <activity android:name=".Vista.vistasMetas.Cumplimiento"></activity>
         <activity android:name=".Vista.vistasMetas.Estadistica"></activity>
 
-        <activity android:name=".Vista$AsistenciaEstudianteAdapter" />
+
         <activity android:name=".Vista.PantallaEstadisticas" />
         <activity android:name=".Vista.InfoAsistenciaEstudiante" />
         <activity android:name=".Vista.AsistenciaV"/>
@@ -83,7 +83,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Vista.AgregarCategoriaEtico" />
         <activity android:name=".Vista.AgregarSubcategoriaEtico" />
-        <activity android:name=".Vista.EstadisticasEticoEstudiante" />
+
         <activity android:name=".Vista.EstadisticaEtico" />
         <activity android:name=".Vista.EstadisticaEticoEstudiante" />
         <activity android:name=".Vista.EstadisticaEticoEstudianteFecha"></activity>

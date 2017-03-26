@@ -43,10 +43,13 @@ public class InicioActivity extends AppCompatActivity implements View.OnClickLis
         btnConf.setOnClickListener(this);
     }
 
+    /**
+     * Metodo que captura los eventos de estadistica, seguimiento y configuración
+     * @param v Objeto que fue seleccionado
+     */
     @Override
     public void onClick(View v) {
         switch(v.getId()){
-            //Intent intent;
 
             case R.id.btnGrupo:
                 grupos = datos.obtenerGruposDB();
