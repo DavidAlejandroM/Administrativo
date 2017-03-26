@@ -26,6 +26,9 @@ import java.util.ArrayList;
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO.Estudiante;
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.R;
 
+/**
+ * Clase que soporta el listado de estudiantes pertenecientes a un grupo, en la vista de cumplimiento.
+ */
 public class CustomListAdapterMC extends ArrayAdapter<Estudiante>{
 
     Context context;
@@ -47,14 +50,12 @@ public class CustomListAdapterMC extends ArrayAdapter<Estudiante>{
     }
 
     public View getView(final int position, @Nullable View convertView, @NonNull final ViewGroup parent) {
-
         if(convertView == null){
             LayoutInflater layoutInflater = (LayoutInflater) getContext()
                     .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.activity_list_metas_cumplimiento, null, true);
 
         }
-
         try{
             if(itemSelection.size()<100){
                 itemSelection.add(false);
@@ -103,66 +104,7 @@ public class CustomListAdapterMC extends ArrayAdapter<Estudiante>{
                             est.getGestorMetas().setAsignacionCumplimiento(true);
                         }
                     }
-            );
-            /*
-            //selectionCumplio.add(false);
-            //selectionNoCumplio.add(false);
-            opcionCumplio = (RadioButton) convertView.findViewById(R.id.cumplio);
-            opcionNoCumplio = (RadioButton) convertView.findViewById(R.id.noCumplio);
-            opciones=(RadioGroup) convertView.findViewById(R.id.grupoOpcionesC);
-            opciones.setTag(position);
-            opciones.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                    RadioButton seleccionado = (RadioButton)group.findViewById(checkedId);
-                    boolean cumplio;
-                    if(seleccionado.getText().toString().compareTo(opcionCumplio.getText().toString())==0){
-                        selectionCumplio.set(position, true);
-                        selectionNoCumplio.set(position, false);
-                        cumplio = true;
-                    }else{
-                        selectionNoCumplio.set(position, true);
-                        selectionCumplio.set(position, false);
-                        cumplio = false;
-                    }
-                    for(int i=0 ; i<getCount() ; i++){
-                        if(i==position){
-                            est = getItem(i);
-                            break;
-                        }
-                    }
-                    if(cumplio) {
-                        est.getGestorMetas().setCumplimiento(true);
-                        est.getGestorMetas().setAsignacionCumplimiento(true);
-                    }else {
-                        est.getGestorMetas().setCumplimiento(false);
-                        est.getGestorMetas().setAsignacionCumplimiento(true);
-                    }
-                }
-            });
-
-            /*opciones.setOnClickListener(
-                    new View.OnClickListener(){
-                        @Override
-                        public void onClick(View v){
-                            Estudiante est = null;
-                            for(int i=0 ; i<getCount() ; i++){
-                                if(i==position){
-                                    est = getItem(i);
-                                    break;
-                                }
-                            }
-                            if(opcionCumplio.isChecked()) {
-                                est.getGestorMetas().setCumplimiento(true);
-                                est.getGestorMetas().setAsignacionCumplimiento(true);
-                            }else if(opcionNoCumplio.isChecked()){
-                                est.getGestorMetas().setCumplimiento(false);
-                                est.getGestorMetas().setAsignacionCumplimiento(true);
-                            }else
-                                est.getGestorMetas().setAsignacionCumplimiento(false);
-                        }
-                    }
-            );*/}catch (Exception e){e.printStackTrace();}
+            );}catch (Exception e){e.printStackTrace();}
 
         Estudiante estudiante = getItem(position);
 
@@ -181,22 +123,10 @@ public class CustomListAdapterMC extends ArrayAdapter<Estudiante>{
         apellidoEst.setText(estudiante.getApellidos());
         nombreEst.setTextColor(Color.BLACK);
         apellidoEst.setTextColor(Color.BLACK);
-        /*
-        opciones=(RadioGroup) convertView.findViewById(R.id.grupoOpcionesC);
-        opciones.setTag(position);
-        opcionCumplio = (RadioButton)convertView.findViewById(R.id.cumplio);
-
-        opcionCumplio.setChecked(selectionCumplio.get(position));
-
-        opcionNoCumplio = (RadioButton)convertView.findViewById(R.id.noCumplio);
-        opcionNoCumplio.setChecked(selectionNoCumplio.get(position));
-        */
         cumple = (CheckBox)convertView.findViewById(R.id.cumple);
         noCumple = (CheckBox)convertView.findViewById(R.id.noCumple);
-
         cumple.setChecked(itemSelection.get(position));
         noCumple.setChecked(itemSelection2.get(position));
-
         return convertView;
     }
 

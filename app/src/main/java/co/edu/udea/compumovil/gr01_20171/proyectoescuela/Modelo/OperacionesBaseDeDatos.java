@@ -516,6 +516,7 @@ public final class OperacionesBaseDeDatos {
         return baseDatos.getWritableDatabase();
     }
 
+    // Se recupera el registro de lista metas correspondiente a la clave primaria ingresada como parametro
     public ListaMetas obtenerMeta(int id) {
         String consulta;
         consulta = String.format("SELECT * FROM tbl_lista_metas WHERE ("+

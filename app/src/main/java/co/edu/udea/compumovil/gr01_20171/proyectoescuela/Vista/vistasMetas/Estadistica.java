@@ -23,6 +23,10 @@ import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO.Estudiante;
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO.Meta;
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.R;
 
+/**
+ * Clase que permite mostrar, mediante un grafico de barras, el cumplimiento de todos los estudiantes
+ * asociados a una meta, con respecto a ella.
+ */
 public class Estadistica extends Activity{
 
     private BarChart chart;
@@ -51,7 +55,6 @@ public class Estadistica extends Activity{
 
         ArrayList xVals = new ArrayList();
         ArrayList<Meta> metaPorEstudiante = ManejaBDMetas.retornarDatos(OperacionesBaseDeDatos.obtenerInstancia(getApplicationContext()),2,idMeta);
-        //recuperar estudiantes que tengan idMetaporestudiante
         int groupCount = metaPorEstudiante.size();
         ArrayList<ArrayList<CumplimientoMeta>> listarCumplimiento = new ArrayList<>();
         Estudiante est;
@@ -101,7 +104,6 @@ public class Estadistica extends Activity{
         l.setYEntrySpace(0f);
         l.setTextSize(8f);
 
-        //X-axis
         XAxis xAxis = chart.getXAxis();
         xAxis.setGranularity(1f);
         xAxis.setGranularityEnabled(true);
@@ -110,10 +112,11 @@ public class Estadistica extends Activity{
 
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setValueFormatter(new IndexAxisValueFormatter(xVals));
-//Y-axis
         chart.getAxisRight().setEnabled(false);
     }
 
+    // Metodo para calcular la cantidad de cumplimientos o no cumplimientos de un estudiante
+    // respecto a una meta.
     private int[] calcularCantCumplimientos(ArrayList<CumplimientoMeta> lista ){
         CumplimientoMeta registro;
         int[] vector = new int[2];

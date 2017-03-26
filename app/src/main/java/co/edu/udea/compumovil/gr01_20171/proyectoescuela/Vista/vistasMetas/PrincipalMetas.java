@@ -37,6 +37,9 @@ import co.edu.udea.compumovil.gr01_20171.proyectoescuela.R;
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.ListarEstudiantes;
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.PantallaConfiguracion;
 
+/**
+ * Clase que controla la vista principal del submodulo de metas.
+ */
 public class PrincipalMetas extends AppCompatActivity {
 
     private static ArrayList<Estudiante> estudiantes;
@@ -69,14 +72,12 @@ public class PrincipalMetas extends AppCompatActivity {
         cambiarEstadoComponentesMG(false);
         listarMetas();
         metaPorEstudiante = new Meta();
-
         getApplicationContext().deleteDatabase("pedidos.db");
         intent = getIntent();
         bundle = intent.getExtras();
         grupo = (Grupo) intent.getSerializableExtra("GRUPO");
         estudiantes = retornaEstudiantes(grupo);
         Collections.sort(estudiantes);
-
         list = (ListView)findViewById(R.id.list_metas);
         customListAdapter = new CustomListAdapterM(getApplicationContext()
                 ,R.layout.activity_list_metas);
@@ -91,7 +92,6 @@ public class PrincipalMetas extends AppCompatActivity {
         if(customListAdapter != null && list!=null && estudiantes!=null ){
             list.setAdapter(customListAdapter);
         }
-
         duracionEq.setClickable(true);
         duracionEq.setOnClickListener(
                 new View.OnClickListener() {
@@ -137,6 +137,8 @@ public class PrincipalMetas extends AppCompatActivity {
         onRestart();
     }
 
+
+    // Metodo para cargar los estudiantes pertenecientes al grupo que se va a mostrar en pantalla
     private static ArrayList<Estudiante> retornaEstudiantes(Grupo grupo){
         try {
             datos.getDb().beginTransaction();
@@ -150,11 +152,15 @@ public class PrincipalMetas extends AppCompatActivity {
         return estudiantes;
     }
 
+
+    // Metodo para activar la vista de creacion de metas
     private void activarCrear(){
         Intent intencion = new Intent(this, CreacionMeta.class);
         startActivity(intencion);
     }
 
+
+    // Metodo para activar la vista de asignacion de cumplimientos
     private void activarCumplimiento(){
         int seleccion = opciones.getSelectedItemPosition();
         if (seleccion == -1){
@@ -167,6 +173,7 @@ public class PrincipalMetas extends AppCompatActivity {
         startActivity(intencion);
     }
 
+    // Metodo para activar la vista de estadisticas
     private void activarEstadisticas(){
         int seleccion = opciones.getSelectedItemPosition();
         if (seleccion == -1){
@@ -179,7 +186,7 @@ public class PrincipalMetas extends AppCompatActivity {
         startActivity(intencion);
     }
 
-    // Seleccion de Grupo
+    // Metodo para cargar en el menu desplegable de metas, las metas disponibles en la base de datos.
     private void listarMetas(){
         metas = ManejaBDMetas.listarMetas(OperacionesBaseDeDatos.obtenerInstancia(getApplicationContext()));
         int tamaño = metas.size();
@@ -190,7 +197,7 @@ public class PrincipalMetas extends AppCompatActivity {
         opciones.setAdapter(new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, nombreMetas));
     }
 
-    // Asignacion de Meta
+    // Metodo para asignar una meta a los estudiantes seleccionados actualmente en la vista (con sus respectivas duraciones)
     private void asignarMeta(){
         int seleccion = opciones.getSelectedItemPosition();
         if (seleccion == -1){
@@ -222,10 +229,10 @@ public class PrincipalMetas extends AppCompatActivity {
         campoEdicion.setEnabled(estado);
         boton.setEnabled(estado);
     }
-
     private void cmabiarEstadoCampo(boolean estado){
         campoEdicion.setEnabled(estado);
     }
+    //
 
     // Menu
     @Override
@@ -256,7 +263,9 @@ public class PrincipalMetas extends AppCompatActivity {
         }
         return(true);
     }
+    //
 
+    // Metodo para cargar datos a una nueva meta que sera ingresada en la base de datos
     private void setMeta(Estudiante estudiante, int clave){
         metaPorEstudiante.setEstudianteId(estudiante.getIdentificacion());
         metaPorEstudiante.setListaMetasId(metaSeleccionada.getId());
@@ -265,6 +274,7 @@ public class PrincipalMetas extends AppCompatActivity {
         else metaPorEstudiante.setDuracion(Integer.parseInt(campoEdicion.getText().toString()));
     }
 
+    // Mostrar un mensaje en pantalla
     private void mensaje(String mensaje, int clave){
         if(clave == 0) Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
         else Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show();

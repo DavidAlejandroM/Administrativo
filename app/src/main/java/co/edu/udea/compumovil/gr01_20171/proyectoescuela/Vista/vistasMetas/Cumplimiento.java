@@ -25,6 +25,9 @@ import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO.ListaMetas;
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO.Meta;
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.R;
 
+/**
+ * Clase que controla la asginacion de cumplimientos a los estudiantes asociados a una meta.
+ */
 public class Cumplimiento extends AppCompatActivity {
 
     private Intent intenncion;
@@ -74,18 +77,6 @@ public class Cumplimiento extends AppCompatActivity {
                 final CheckBox noCumple = (CheckBox)view.findViewById(R.id.noCumple);
                 cumple.setEnabled(true);
                 noCumple.setEnabled(true);
-                /*cumple.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        noCumple.setChecked(false);
-                    }
-                });
-                noCumple.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        cumple.setChecked(false);
-                    }
-                });*/
             }
         });
     }
@@ -97,6 +88,7 @@ public class Cumplimiento extends AppCompatActivity {
         startActivity(getIntent());
     }
 
+    //Metodo que captura el evento de aceptacion para guardar los cumplimientos seleccionados
     public void guardarCumplimientos(View vista){
         Estudiante estudiante;
         for(int i=0;i<estudiantes.size(); i++){
@@ -111,9 +103,6 @@ public class Cumplimiento extends AppCompatActivity {
                     else cumplimiento = new CumplimientoMeta(m.getId(), Calendar.getInstance().getTime(),0);
                     ManejaBDMetas.agregarRegistro(OperacionesBaseDeDatos.obtenerInstancia(getApplicationContext()), cumplimiento);
                 }
-                /*if(estadoCumplimiento) cumplimiento = new CumplimientoMeta(idMeta, Calendar.getInstance().getTime(),1);
-                else cumplimiento = new CumplimientoMeta(idMeta, Calendar.getInstance().getTime(),0);
-                ManejaBDMetas.agregarRegistro(OperacionesBaseDeDatos.obtenerInstancia(getApplicationContext()), cumplimiento);*/
             }
         }mensaje("Se asignaron correctamente los cumplimientos");
         onRestart();
@@ -123,6 +112,7 @@ public class Cumplimiento extends AppCompatActivity {
         meta = ManejaBDMetas.obtenerMeta(OperacionesBaseDeDatos.obtenerInstancia(getApplicationContext()), idMeta);
     }
 
+    // Metodo para cargar los textos correspondientes que componen la vista
     private void cargarTextos(){
         Calendar calendar = Calendar.getInstance();
         int dia = calendar.get(Calendar.DAY_OF_MONTH);
@@ -134,6 +124,7 @@ public class Cumplimiento extends AppCompatActivity {
         campo = (TextView)findViewById(R.id.tipoMeta); campo.setText(meta.getTipo());
     }
 
+    // Metodo para cargar los estudiantes pertenecientes al grupo que se va a mostrar en pantalla
     private ArrayList<Estudiante> obtenerListaEstudiantes(){
         metas = ManejaBDMetas.retornarDatos(OperacionesBaseDeDatos.obtenerInstancia(getApplicationContext()),2,idMeta);
         ArrayList<Estudiante> lista = new ArrayList<Estudiante>();
@@ -146,6 +137,7 @@ public class Cumplimiento extends AppCompatActivity {
         return(lista);
     }
 
+    // Mostrar un mensjae en pantalla
     private void mensaje(String mensaje){
         Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
     }

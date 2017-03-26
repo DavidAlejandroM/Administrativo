@@ -17,6 +17,9 @@ import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.OperacionesBaseD
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO.ListaMetas;
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.R;
 
+/**
+ * Clase que controla la vista de creacion de metas.
+ */
 public class CreacionMeta extends AppCompatActivity {
 
     private String nombre;
@@ -34,6 +37,7 @@ public class CreacionMeta extends AppCompatActivity {
         campo = (EditText)findViewById(R.id.nombreMeta);
     }
 
+    // Metodo que captura el evento de aceptacion para crear una nueva meta
     public void crearMeta(View vista){
         if(validarCondiciones()){
             if(r1.isChecked())tipo = "Cognitiva";
@@ -49,10 +53,12 @@ public class CreacionMeta extends AppCompatActivity {
         }
     }
 
+    // Mostrar un mensaje en pantalla
     private void mensaje(String mensaje){
         Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
     }
 
+    // Metodo para validar que los campos asociados a la meta a crear esten correctamente diligenciados
     private boolean validarCondiciones() {
         nombre = campo.getText().toString();
         if (nombre.compareTo("") == 0) return (false);
@@ -60,6 +66,7 @@ public class CreacionMeta extends AppCompatActivity {
         return (true);
     }
 
+    // Metodo para actualizar los componentes visuales de la vista
     private void refresh(){
         campo.setText("");
         r1.setChecked(false);

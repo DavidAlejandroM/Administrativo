@@ -34,6 +34,9 @@ import co.edu.udea.compumovil.gr01_20171.proyectoescuela.R;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
+/**
+ * Clase que soporta el listado de estudiantes pertenecientes a un grupo, en la vista principal de metas.
+ */
 public class CustomListAdapterM extends ArrayAdapter<Estudiante> {
 
     Context context;
@@ -106,7 +109,6 @@ public class CustomListAdapterM extends ArrayAdapter<Estudiante> {
                             }
                         }
                         String textoDuracion = edit.getText().toString();
-                        // MODIFICAR
                         if(textoDuracion.compareTo("")!=0)
                             est.getGestorMetas().setDuracionMeta(Integer.parseInt(textoDuracion));
                         else est.getGestorMetas().setDuracionMeta(0);
