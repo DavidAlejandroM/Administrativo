@@ -2,13 +2,9 @@ package co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
-import java.sql.SQLInput;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,9 +13,6 @@ import java.util.Date;
 import java.util.Locale;
 
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO.*;
-import co.edu.udea.compumovil.gr01_20171.proyectoescuela.R;
-import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.EstudianteAdapter;
-import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.vistasMetas.Cumplimiento;
 
 /**
  * Clase auxiliar que implementa a {@link ManejaSQL} para llevar a cabo el CRUD

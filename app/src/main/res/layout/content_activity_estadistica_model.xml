@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.EstadisticaModel"
+    tools:context="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Controlador.EstadisticaModel"
     tools:showIn="@layout/activity_estadistica_model">
 
     <android.support.v7.widget.LinearLayoutCompat

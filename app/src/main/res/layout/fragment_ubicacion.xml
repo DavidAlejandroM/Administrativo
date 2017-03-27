@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.UbicacionFragment">
+    tools:context="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Controlador.UbicacionFragment">
 
     <!-- TODO: Update blank fragment layout -->
 

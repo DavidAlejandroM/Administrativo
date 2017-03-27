@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.InfoAsistenciaGrupo">
+    tools:context="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Controlador.InfoAsistenciaGrupo">
 
     <LinearLayout
         android:layout_width="match_parent"

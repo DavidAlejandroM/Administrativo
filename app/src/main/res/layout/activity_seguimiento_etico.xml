@@ -4,7 +4,7 @@
     android:id="@+id/activity_seguimiento_etico"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.SeguimientoEtico"
+    tools:context="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Controlador.SeguimientoEtico"
     android:orientation="vertical">
 
     <LinearLayout
