@@ -78,7 +78,8 @@ public class SegCogEstudiante extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.seg_cog_estudiante_activity);
         int id = getIntent().getIntExtra("id",0);
-        manager = OperacionesBaseDeDatos.obtenerInstancia(getApplicationContext());
+
+
         estudiante = manager.obtenerEstudiante(id);
         incializarComponente();
 
@@ -345,7 +346,7 @@ public class SegCogEstudiante extends Activity {
     }
 
     /**
-     * Muestra la vista para añadir subcategorias de la categoria Aplicar
+     * Muestra el dialogo para añadir subcategorias de la categoria Aplicar
     * @param view
      */
     public void clickAgregarSubAplicar(View view)
@@ -354,7 +355,7 @@ public class SegCogEstudiante extends Activity {
     }
 
     /**
-     * Muestra la vista para añadir subcategorias de la categoria Analizar
+     * Muestra el dialogo para añadir subcategorias de la categoria Analizar
      * @param view Objeto de la vista
      */
     public void clickAgregarSubAnalizar(View view)
@@ -363,7 +364,7 @@ public class SegCogEstudiante extends Activity {
     }
 
     /**
-     * Muestra la vista para añadir subcategorias de la categoria Comprender
+     * Muestra el dialogo para añadir subcategorias de la categoria Comprender
      * @param view Objeto de la vista
      */
     public void clickAgregarSubComprender(View view)
@@ -372,7 +373,7 @@ public class SegCogEstudiante extends Activity {
     }
 
     /**
-     * Muestra la vista para añadir subcategorias de la categoria Crear
+     * Muestra el dialogo para añadir subcategorias de la categoria Crear
      * @param view Objeto de la vista
      */
     public void clickAgregarSubCrear(View view)
@@ -380,7 +381,7 @@ public class SegCogEstudiante extends Activity {
         OpenDialogSubCategorias(getResources().getString(R.string.crear));
     }
     /**
-     * Muestra la vista para añadir subcategorias de la categoria Reecordar
+     * Muestra el dialogo para añadir subcategorias de la categoria Reecordar
      * @param view Objeto de la vista
      */
     public void clickAgregarSubRecordar(View view)
@@ -388,7 +389,7 @@ public class SegCogEstudiante extends Activity {
         OpenDialogSubCategorias(getResources().getString(R.string.recordar));
     }
     /**
-     * Muestra la vista para añadir subcategorias de la categoria Evaluar
+     * Muestra el dialogo para añadir subcategorias de la categoria Evaluar
      * @param view Objeto de la vista
      */
     public void clickAgregarSubEvaluar(View view)
@@ -467,7 +468,6 @@ public class SegCogEstudiante extends Activity {
         {
             arrayListRecordar = subcategorias;
         }
-
 
         SubCategoriaAdapter adapter = new SubCategoriaAdapter(this, subcategorias);
 
