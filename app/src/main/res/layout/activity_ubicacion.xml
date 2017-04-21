@@ -3,7 +3,7 @@
         android:id="@+id/contenedor_item_estudiante"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-    tools:context="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.Ubicacion"
+    tools:context="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Controlador.Ubicacion"
         android:orientation="vertical">
 
             <GridView

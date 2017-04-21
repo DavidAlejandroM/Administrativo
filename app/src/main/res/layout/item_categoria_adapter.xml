@@ -10,7 +10,7 @@
     android:orientation="vertical"
 
 
-    tools:context="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.CategoriaAdapter">
+    tools:context="co.edu.udea.compumovil.gr01_20171.proyectoescuela.Controlador.CategoriaAdapter">
 
 
     <LinearLayout

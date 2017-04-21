@@ -2,13 +2,9 @@ package co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
-import java.sql.SQLInput;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,9 +13,6 @@ import java.util.Date;
 import java.util.Locale;
 
 import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Modelo.POJO.*;
-import co.edu.udea.compumovil.gr01_20171.proyectoescuela.R;
-import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.EstudianteAdapter;
-import co.edu.udea.compumovil.gr01_20171.proyectoescuela.Vista.vistasMetas.Cumplimiento;
 
 /**
  * Clase auxiliar que implementa a {@link ManejaSQL} para llevar a cabo el CRUD
@@ -68,7 +61,7 @@ public final class OperacionesBaseDeDatos {
 
         SQLiteDatabase db = baseDatos.getWritableDatabase();
 
-        String query = String.format("SELECT MAX(%s) %s FROM %s WHERE %s = %s AND %s = '%s'",
+        /*String query = String.format("SELECT MAX(%s) %s FROM %s WHERE %s = %s AND %s = '%s'",
                 ContratoEscuela.ColumnasEstudiante.EST_POS_FILA,
                 ContratoEscuela.ColumnasEstudiante.EST_POS_FILA,
                 ManejaSQL.Tablas.TBL_ESTUDIANTE,
@@ -82,7 +75,40 @@ public final class OperacionesBaseDeDatos {
         {
             cursor.moveToFirst();
             filamax = cursor.getInt(0);
+        }*/
+        String query = String.format("SELECT %s FROM %s WHERE %s = %s AND %s = '%s' ORDER BY %s ASC" ,
+                ContratoEscuela.ColumnasEstudiante.EST_POS_FILA,
+                ManejaSQL.Tablas.TBL_ESTUDIANTE,
+                ContratoEscuela.ColumnasEstudiante.EST_GRP_CURSO,
+                estudiante.getCurso(),
+                ContratoEscuela.ColumnasEstudiante.EST_GRP_GRUPO,
+                estudiante.getGrupo(),
+                ContratoEscuela.ColumnasEstudiante.EST_POS_FILA);
+        int filamax = 0;
+        Cursor cursor = db.rawQuery(query,null);
+        cursor.moveToFirst();
+
+        for (int i = 1 ; i <= cursor.getCount();i++)
+        {
+            int fila = cursor.getInt(0);
+            if (fila != i)
+            {
+                filamax = i;
+                break;
+            }
         }
+        if (filamax == 0)
+        {
+            if (cursor.getCount() != 0)
+            {
+                filamax = cursor.getCount() + 1;
+            }
+            else
+            {
+                filamax = filamax + 1;
+            }
+        }
+
 
         ContentValues valores = new ContentValues();
         valores.put(ContratoEscuela.Estudiantes.EST_IDENTIFICACION, estudiante.getIdentificacion());
@@ -92,7 +118,7 @@ public final class OperacionesBaseDeDatos {
         valores.put(ContratoEscuela.Estudiantes.EST_GRP_CURSO, estudiante.getCurso());
         valores.put(ContratoEscuela.Estudiantes.EST_GRP_GRUPO, estudiante.getGrupo());
         valores.put(ContratoEscuela.Estudiantes.EST_POS_COL, estudiante.getPosColumna());
-        valores.put(ContratoEscuela.Estudiantes.EST_POS_FILA, filamax+1);
+        valores.put(ContratoEscuela.Estudiantes.EST_POS_FILA, filamax);
         long response = db.insertOrThrow(ManejaSQL.Tablas.TBL_ESTUDIANTE, null, valores);
         if (response != -1)
         {
@@ -516,6 +542,7 @@ public final class OperacionesBaseDeDatos {
         return baseDatos.getWritableDatabase();
     }
 
+    // Se recupera el registro de lista metas correspondiente a la clave primaria ingresada como parametro
     public ListaMetas obtenerMeta(int id) {
         String consulta;
         consulta = String.format("SELECT * FROM tbl_lista_metas WHERE ("+
