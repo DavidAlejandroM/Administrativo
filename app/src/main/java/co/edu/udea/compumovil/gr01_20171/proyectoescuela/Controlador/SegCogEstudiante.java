@@ -78,7 +78,7 @@ public class SegCogEstudiante extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.seg_cog_estudiante_activity);
         int id = getIntent().getIntExtra("id",0);
-        
+
         manager = OperacionesBaseDeDatos.obtenerInstancia(this);
         estudiante = manager.obtenerEstudiante(id);
         incializarComponente();
