@@ -22,28 +22,57 @@
             android:orientation="horizontal"
             android:padding="10dp">
 
-            <ImageButton
-                android:id="@+id/btn_seguimiento_etico"
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:contextClickable="false"
-                android:text="@string/seguimiento_etico"
-                android:onClick="ClckIrSeguimientoEtico"
-                android:background="@color/transparente"
-                app:srcCompat="@mipmap/etica"
-               />
+                android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/btn_seguimiento_cognitivo"
+                <ImageButton
+                    android:id="@+id/btn_seguimiento_etico"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparente"
+                    android:contextClickable="false"
+                    android:onClick="ClckIrSeguimientoEtico"
+                    android:text="@string/seguimiento_etico"
+                    app:srcCompat="@mipmap/etica"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/seguimiento_etico"
+                    android:textAlignment="center"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:labelFor="@+id/btn_asistencia"
-                android:onClick="ClckIrSeguimientoCognitivo"
-                android:text="@string/seguimiento_cognitivo"
-                android:background="@color/transparente"
-                app:srcCompat="@mipmap/cognitivo"/>
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/btn_seguimiento_cognitivo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@+id/btn_asistencia"
+                    android:onClick="ClckIrSeguimientoCognitivo"
+                    android:text="@string/seguimiento_cognitivo"
+                    android:background="@color/transparente"
+                    app:srcCompat="@mipmap/cognitivo"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/seguimiento_cognitivo"
+                    android:textAlignment="center"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -54,37 +83,79 @@
             android:orientation="horizontal"
             android:padding="10dp">
 
-            <ImageButton
-                android:id="@+id/btn_metas"
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:onClick="ClickIrMetas"
-                app:srcCompat="@mipmap/metas"
-                android:background="@color/transparente"
-                android:text="@string/metas" />
+                android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/btn_asistencia"
+                <ImageButton
+                    android:id="@+id/btn_metas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="ClickIrMetas"
+                    app:srcCompat="@mipmap/metas"
+                    android:background="@color/transparente"
+                    android:text="@string/metas" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/metas"
+                    android:textAlignment="center"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:onClick="ClickIrAsistencia"
-                app:srcCompat="@mipmap/asistencia"
-                android:background="@color/transparente"
-                android:text="@string/asistencia" />
+                android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/btn_ubicacion"
+                <ImageButton
+                    android:id="@+id/btn_asistencia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="ClickIrAsistencia"
+                    app:srcCompat="@mipmap/asistencia"
+                    android:background="@color/transparente"
+                    android:text="@string/asistencia" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/asistencia"
+                    android:textAlignment="center"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:onClick="ClickIrUbicacion"
-                android:text="@string/ubicacion"
-                android:background="@color/transparente"
-                app:srcCompat="@mipmap/ubicacion"
+                android:orientation="vertical">
 
-                />
+
+                <ImageButton
+                    android:id="@+id/btn_ubicacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="ClickIrUbicacion"
+                    android:text="@string/ubicacion"
+                    android:background="@color/transparente"
+                    app:srcCompat="@mipmap/ubicacion"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ubicacion"
+                    android:textAlignment="center"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+
+
         </LinearLayout>
 
 
