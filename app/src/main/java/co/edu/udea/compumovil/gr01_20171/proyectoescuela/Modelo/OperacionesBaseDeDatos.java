@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.nfc.Tag;
+import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -96,6 +98,7 @@ public final class OperacionesBaseDeDatos {
                 filamax = i;
                 break;
             }
+            cursor.moveToNext();
         }
         if (filamax == 0)
         {
